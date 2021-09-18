@@ -3,7 +3,6 @@ const numberUtil = require('./number')
  * 字符串操作
  */
 module.exports = {
-	
 
 	/**
 	 * 向指定位置插入字符串

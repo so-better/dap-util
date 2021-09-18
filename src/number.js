@@ -30,8 +30,8 @@ module.exports = {
 	/**
 	 * 多个数的加法运算
 	 */
-	add() {
-		return [...arguments].reduce((num, value) => {
+	add(...values) {
+		return values.reduce((num, value) => {
 			let r1 = 0
 			let r2 = 0
 			let m = 0
@@ -49,8 +49,8 @@ module.exports = {
 	/**
 	 * 多个数的减法运算
 	 */
-	subtract() {
-		return [...arguments].reduce((num, value) => {
+	subtract(...values) {
+		return values.reduce((num, value) => {
 			let r1 = 0
 			let r2 = 0
 			let m = 0
@@ -68,8 +68,8 @@ module.exports = {
 	/**
 	 * 多个数的乘法运算
 	 */
-	mutiply() {
-		return [...arguments].reduce((num, value) => {
+	mutiply(...values) {
+		return values.reduce((num, value) => {
 			let m = 0
 			let s1 = num.toString()
 			let s2 = value.toString()
@@ -87,8 +87,8 @@ module.exports = {
 	/**
 	 * 多个数的除法运算
 	 */
-	divide() {
-		return [...arguments].reduce((num, value) => {
+	divide(...values) {
+		return values.reduce((num, value) => {
 			let t1 = 0
 			let t2 = 0
 			let s1 = num.toString()

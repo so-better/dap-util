@@ -199,7 +199,6 @@ module.exports = {
 		return null
 	},
 
-
 	/**
 	 * 判断是否空对象
 	 * @param {Object} obj

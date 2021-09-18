@@ -1,6 +1,6 @@
 const dataUtil = require('./data')
 const elementUtil = require('./element')
-const common = require('./common')
+const commonUtil = require('./common')
 
 //解析绑定事件名称字符串
 const parseEventName = eventName => {
@@ -107,7 +107,7 @@ module.exports = {
 			throw new TypeError('The third argument must be a function')
 		}
 		//参数options校验
-		if (!common.isObject(options)) {
+		if (!commonUtil.isObject(options)) {
 			options = {}
 		}
 		//解析eventName，获取事件数组以及guid标志
