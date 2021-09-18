@@ -21,7 +21,7 @@ module.exports = {
 			return u.indexOf('AppleWebKit') > -1
 		} else if (params.toLocaleLowerCase() == 'gecko') { //火狐内核
 			return u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1
-		} else if (params.toLocaleLowerCase() == 'edge') { //edge内核
+		} else if (params.toLocaleLowerCase() == 'edge') { //edge浏览器
 			return !!u.match(/Edg\/([\d.]+)/)
 		}else if (params.toLocaleLowerCase() == 'mobile') { //移动终端
 			return !!u.match(/AppleWebKit.*Mobile.*/)
@@ -61,11 +61,11 @@ module.exports = {
 			return (u.indexOf('Android') > -1 && /(?:Mobile)/.test(u)) || (u.indexOf('iPhone') > - 1) || (/(?:Windows Phone)/.test(u))
 		} else if (params.toLocaleLowerCase() == 'windowsphone') { //windows手机
 			return /(?:Windows Phone)/.test(u)
-		} else if (params.toLocaleLowerCase() == 'mac') {
+		} else if (params.toLocaleLowerCase() == 'mac') {//mac电脑
 			return /macintosh|mac os x/i.test(u)
-		} else if (params.toLocaleLowerCase() == 'win32') {
+		} else if (params.toLocaleLowerCase() == 'win32') {//win32系统
 			return u.toLowerCase().indexOf("win32") > -1 || u.toLowerCase().indexOf("wow32") > -1
-		} else if (params.toLocaleLowerCase() == 'win64') {
+		} else if (params.toLocaleLowerCase() == 'win64') {//win64系统
 			return u.toLowerCase().indexOf("win64") > -1 || u.toLowerCase().indexOf("wow64") > -1
 		}
 		

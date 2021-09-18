@@ -1,6 +1,5 @@
 const stringUtil = require('./string')
 const numberUtil = require('./number')
-const commonUtil = require('./common')
 /**
  * element相关工具方法
  */
@@ -93,7 +92,7 @@ module.exports = {
 	},
 
 	/**
-	 * 查找某个节点下指定类名/id/标签名的子元素
+	 * 查找某个节点下指定选择器的子元素
 	 * @param {Object} el 元素节点
 	 * @param {Object} selector 支持多选择器，等同于querySelectorAll的参数
 	 */
@@ -112,7 +111,7 @@ module.exports = {
 	},
 
 	/**
-	 * 查找某个节点下指定类名/id/标签名的兄弟节点
+	 * 查找某个节点下指定选择器的兄弟节点
 	 * @param {Object} el 元素节点
 	 * @param {Object} selector 取值等同于queryselectorAll的参数，支持多选择器
 	 */
@@ -193,7 +192,7 @@ module.exports = {
 
 	/**
 	 * 移除class
-	 * @param {Object} el 未指定则为document.body
+	 * @param {Object} el 元素节点
 	 * @param {Object} className 支持多类,以空格划分
 	 */
 	removeClass(el, className) {
@@ -213,7 +212,7 @@ module.exports = {
 
 	/**
 	 * 添加class
-	 * @param {Object} el 未指定则为document.body
+	 * @param {Object} el 元素节点
 	 * @param {Object} className 支持多类,以空格划分
 	 */
 	addClass(el, className) {
@@ -233,7 +232,7 @@ module.exports = {
 
 	/**
 	 * 判断指定元素是否含有指定类名
-	 * @param {Object} el 未指定则为document.body
+	 * @param {Object} el 元素节点
 	 * @param {Object} className 支持多类,以空格划分
 	 */
 	hasClass(el, className) {

@@ -33,36 +33,36 @@ const updateEvents = events => {
 }
 
 //给元素添加单个事件
-const bindSingleListener = (elm, eventName, guid, fn, options) => {
+const bindSingleListener = (el, eventName, guid, fn, options) => {
 	//获取该元素上的事件对象events:{click_0:{type:'click',fn:fn}}
-	let events = dataUtil.get(elm, 'dap-defined-events') || {}
+	let events = dataUtil.get(el, 'dap-defined-events') || {}
 	//如果没有设定guid
 	if (!guid) {
 		//从该元素上拿到记录的guid值
-		guid = dataUtil.get(elm, 'dap-event-guid') || 0
+		guid = dataUtil.get(el, 'dap-event-guid') || 0
 		//更新guid
-		dataUtil.set(elm, 'dap-event-guid', guid + 1)
+		dataUtil.set(el, 'dap-event-guid', guid + 1)
 	}
 	//更改guid，结合事件名称作为存储的key值
 	guid = eventName + '_' + guid
 	//先判断是否已经含有同guid且同类型事件，有则移除
 	if (events[guid] && events[guid].type == eventName) {
-		elm.removeEventListener(eventName, events[guid].fn, events[guid].options)
+		el.removeEventListener(eventName, events[guid].fn, events[guid].options)
 	}
 	//添加事件
-	elm.addEventListener(eventName, fn, options)
+	el.addEventListener(eventName, fn, options)
 	//添加到events对象里，并更新到节点上
 	events[guid] = {
 		type: eventName,
 		fn: fn,
 		options: options
 	}
-	dataUtil.set(elm, 'dap-defined-events', events)
+	dataUtil.set(el, 'dap-defined-events', events)
 }
 
 //移除元素的单个事件
-const unbindSingleListener = (elm, eventName, guid) => {
-	let events = dataUtil.get(elm, 'dap-defined-events') || {}
+const unbindSingleListener = (el, eventName, guid) => {
+	let events = dataUtil.get(el, 'dap-defined-events') || {}
 	let keys = Object.keys(events)
 	let length = keys.length
 	for (let i = 0; i < length; i++) {
@@ -71,31 +71,31 @@ const unbindSingleListener = (elm, eventName, guid) => {
 			//如果guid存在则移除该修饰符指定的事件，否则移除全部该类型事件
 			if (guid) {
 				if (key == eventName + '_' + guid) {
-					elm.removeEventListener(events[key].type, events[key].fn, events[key].options)
+					el.removeEventListener(events[key].type, events[key].fn, events[key].options)
 					events[key] = undefined
 				}
 			} else {
-				elm.removeEventListener(events[key].type, events[key].fn, events[key].options)
+				el.removeEventListener(events[key].type, events[key].fn, events[key].options)
 				events[key] = undefined
 			}
 		}
 	}
 	//更新events
 	events = updateEvents(events)
-	dataUtil.set(elm, 'dap-defined-events', events)
+	dataUtil.set(el, 'dap-defined-events', events)
 }
 
 module.exports = {
 	/**
 	 * 绑定事件
-	 * @param {Element} elm
-	 * @param {String} eventName
-	 * @param {Function} fn
-	 * @param {Object} options 
+	 * @param {Object} el 元素节点
+	 * @param {Object} eventName 事件名称
+	 * @param {Object} fn 函数
+	 * @param {Object} options 参数 
 	 */
-	on(elm, eventName, fn, options) {
-		//参数elm校验
-		if (!elementUtil.isElement(elm)) {
+	on(el, eventName, fn, options) {
+		//参数el校验
+		if (!elementUtil.isElement(el)) {
 			throw new TypeError('The first argument must be an element node')
 		}
 		//参数eventName校验
@@ -114,17 +114,17 @@ module.exports = {
 		const result = parseEventName(eventName)
 		//批量添加事件
 		result.forEach(res => {
-			bindSingleListener(elm, res.eventName, res.guid, fn.bind(elm), options)
+			bindSingleListener(el, res.eventName, res.guid, fn.bind(el), options)
 		})
 	},
 
 	/**
 	 * 事件解绑
-	 * @param {Element} elm
-	 * @param {String} eventName
+	 * @param {Object} el 元素节点
+	 * @param {Object} eventName 事件名称
 	 */
-	off(elm, eventName) {
-		let events = dataUtil.get(elm, 'dap-defined-events')
+	off(el, eventName) {
+		let events = dataUtil.get(el, 'dap-defined-events')
 		if (!events) {
 			return
 		}
@@ -134,16 +134,16 @@ module.exports = {
 			let length = keys.length
 			for (let i = 0; i < length; i++) {
 				let key = keys[i]
-				elm.removeEventListener(events[key].type, events[key].fn, events[key].options)
+				el.removeEventListener(events[key].type, events[key].fn, events[key].options)
 			}
-			dataUtil.remove(elm, 'dap-defined-events')
-			dataUtil.remove(elm, 'dap-event-guid')
+			dataUtil.remove(el, 'dap-defined-events')
+			dataUtil.remove(el, 'dap-event-guid')
 			return
 		}
 		//解析eventName，获取事件数组以及guid标志
 		const result = parseEventName(eventName)
 		result.forEach(res => {
-			unbindSingleListener(elm, res.eventName, res.guid)
+			unbindSingleListener(el, res.eventName, res.guid)
 		})
 	}
 }

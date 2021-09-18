@@ -6,8 +6,8 @@ module.exports = {
 
 	/**
 	 * 获取前N个月的日期，包含本月
-	 * @param {Date} date 指定日期，默认为今日
-	 * @param {Number} num 指定个数，默认为1
+	 * @param {Object} date 指定日期，默认为今日
+	 * @param {Object} num 指定个数，默认为1
 	 */
 	getPrevMonths(date, num) {
 		if (!date || !(date instanceof Date)) {
@@ -36,8 +36,8 @@ module.exports = {
 
 	/**
 	 * 获取后N个月的日期，包含本月
-	 * @param {Date} date 指定日期，默认为今日
-	 * @param {Number} num 指定个数，默认为1
+	 * @param {Object} date 指定日期，默认为今日
+	 * @param {Object} num 指定个数，默认为1
 	 */
 	getNextMonths(date, num) {
 		if (!date || !(date instanceof Date)) {
@@ -65,8 +65,8 @@ module.exports = {
 
 	/**
 	 * 获取指定天数后的日期
-	 * @param {Date} date 指定日期，默认为
-	 * @param {Number} num
+	 * @param {Object} date 指定日期，默认为今日
+	 * @param {Object} num 指定天数
 	 */
 	getDateAfter(date, num) {
 		if (!date || !(date instanceof Date)) {
@@ -80,8 +80,8 @@ module.exports = {
 
 	/**
 	 * 获取指定天数前的日期
-	 * @param {Date} date
-	 * @param {Number} num 
+	 * @param {Object} date
+	 * @param {Object} num 
 	 */
 	getDateBefore(date, num) {
 		if (!date || !(date instanceof Date)) {

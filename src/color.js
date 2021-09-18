@@ -1,3 +1,4 @@
+const commonUtil = require('./common')
 /**
  * 颜色相关方法
  */
@@ -132,9 +133,7 @@ module.exports = {
 			throw new TypeError('The argument must be a string')
 		}
 		let color = hex.toLowerCase()
-		//十六进制颜色值的正则表达式
-		let reg = /^#([0-9a-fA-f]{3}|[0-9a-fA-f]{6})$/
-		if(!reg.test(color)){
+		if(!commonUtil.matchingText(color,'hex')){
 			throw new TypeError('The argument must be a hexadecimal color value')
 		}
 		//4位数的十六进制颜色值

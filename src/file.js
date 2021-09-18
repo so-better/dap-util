@@ -1,7 +1,7 @@
 module.exports = {
 	/**
 	 * 根据文件获取可预览的图片路径
-	 * @param {File} file
+	 * @param {Object} file
 	 */
 	getImageUrl(file) {
 		if(!file || !(file instanceof File)){
@@ -33,14 +33,14 @@ module.exports = {
 	/**
 	 * 将base64位格式文件转换为file对象
 	 * @param {Object} base64String base64位格式字符串
-	 * @param {Object} filename 转换后的文件名字，包含后缀
+	 * @param {Object} fileName 转换后的文件名字，包含后缀
 	 */
-	dataBase64toFile(base64String, filename) {
+	dataBase64toFile(base64String, fileName) {
 		if(!base64String || typeof base64String != 'string'){
 			throw new TypeError('The first argument must be a string')
 		}
-		if(!base64String || typeof base64String != 'string'){
-			throw new TypeError('The file name is undefined')
+		if(!fileName || typeof fileName != 'string'){
+			throw new TypeError('The second argument must be a string')
 		}
 		let arr = base64String.split(',')
 		let mime = arr[0].match(/:(.*?);/)[1]
@@ -50,7 +50,7 @@ module.exports = {
 		while (n--) {
 			u8arr[n] = bstr.charCodeAt(n)
 		}
-		return new File([u8arr], filename, {
+		return new File([u8arr], fileName, {
 			type: mime
 		})
 	}
