@@ -221,9 +221,6 @@ module.exports = {
 	 * @param {Object} b
 	 */
 	equal(a, b) {
-		if (!a || !b) {
-			return false
-		}
 		if (typeof a !== typeof b) {
 			return false
 		}
