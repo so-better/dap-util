@@ -115,13 +115,13 @@ module.exports = {
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
-		if (!selector || typeof selector != 'string') {
+		if (selector && typeof selector != 'string') {
 			throw new TypeError('The second argument must be a string')
 		}
 		if (!el.parentNode) {
 			return []
 		}
-		const res = el.parentNode.querySelectorAll(selector)
+		const res = el.parentNode.querySelectorAll(selector || '*')
 		return [...res].filter(ele => {
 			return ele.parentNode === el.parentNode && ele != el
 		})
