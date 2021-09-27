@@ -14,12 +14,7 @@ module.exports = {
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
-		if (this.isElement(root)) {
-			let position = this.getCssStyle(root, "position")
-			if (position === "static") {
-				throw new TypeError('The second argument must be an element with non-static positioning')
-			}
-		} else {
+		if (!this.isElement(root)) {
 			root = document.body
 		}
 
