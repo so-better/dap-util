@@ -225,6 +225,8 @@ module.exports = {
 			return false
 		}
 		if (this.isObject(a) && this.isObject(b)) {
+			a = Object.assign({},a)
+			b = Object.assign({},b)
 			let aProps = Object.getOwnPropertyNames(a)
 			let bProps = Object.getOwnPropertyNames(b)
 			if (aProps.length != bProps.length) {

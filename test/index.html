@@ -6,9 +6,19 @@
 	</head>
 	<body>
 		<input type="file" id="btn">
+		<div id="app"></div>
 	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 	<script src="../dist/dap-util.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-	  console.log(Dap.color.hex2rgb('2'))
+		new Vue({
+			el:'#app',
+			data: {
+				obj:[1]
+			},
+			mounted() {
+				console.log(Dap.common.equal(this.obj,[1]))
+			}
+		})
 	</script>
 </html>
