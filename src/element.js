@@ -8,7 +8,7 @@ module.exports = {
 	/**
 	 * 获取元素距离指定祖先元素左侧/顶部/底部/右侧的距离
 	 * @param {Object} el 元素
-	 * @param {Object} root 父元素或者祖先元素
+	 * @param {Object} root 父元素或者祖先元素，未指定则为document.body
 	 */
 	getElementPoint(el, root) {
 		if (!this.isElement(el)) {
