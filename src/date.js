@@ -66,7 +66,7 @@ module.exports = {
 	/**
 	 * 获取指定天数后的日期
 	 * @param {Object} date 指定日期，默认为今日
-	 * @param {Object} num 指定天数
+	 * @param {Object} num 指定天数，默认为1
 	 */
 	getDateAfter(date, num) {
 		if (!date || !(date instanceof Date)) {
@@ -80,8 +80,8 @@ module.exports = {
 
 	/**
 	 * 获取指定天数前的日期
-	 * @param {Object} date
-	 * @param {Object} num 
+	 * @param {Object} date 指定日期，默认为今日
+	 * @param {Object} num 指定天数，默认为1
 	 */
 	getDateBefore(date, num) {
 		if (!date || !(date instanceof Date)) {

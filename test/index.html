@@ -17,7 +17,11 @@
 				obj:[1]
 			},
 			mounted() {
-				console.log(Dap.common.equal(this.obj,[1]))
+				let a = 0;
+				Object.values(Dap).forEach(item=>{
+					a += Object.keys(item).length
+				})
+				console.log(a)
 			}
 		})
 	</script>
