@@ -194,7 +194,7 @@ module.exports = {
 		}
 		let r = search.match(reg)
 		if (r) {
-			return unescape(r[2])
+			return decodeURIComponent(r[2])
 		}
 		return null
 	},
