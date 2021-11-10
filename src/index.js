@@ -8,13 +8,13 @@ const color = require('./color')
 const file = require('./file')
 const string = require('./string')
 module.exports = {
-	number,
-	data,
-	element,
-	event,
-	common,
-	date,
-	color,
-	file,
-	string
+    number,
+    data,
+    element,
+    event,
+    common,
+    date,
+    color,
+    file,
+    string
 }
