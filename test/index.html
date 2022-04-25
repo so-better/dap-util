@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Dap</title>
-	</head>
-	<body>
-		<input type="file" id="btn">
-		<div id="app"></div>
-	</body>
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
-	<script src="../dist/dap-util.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		new Vue({
-			el:'#app',
-			data: {
-				obj:[1]
-			},
-			mounted() {
-				let a = 0;
-				Object.values(Dap).forEach(item=>{
-					a += Object.keys(item).length
-				})
-				console.log(a)
-			}
-		})
-	</script>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+        />
+        <title>Dap</title>
+        <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.6/vconsole.min.js"></script>
+        <script>
+            new VConsole()
+        </script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script
+        src="../dist/dap-util.js"
+        type="text/javascript"
+        charset="utf-8"
+    ></script>
+    <script type="text/javascript">
+        const device = Dap.platform.os()
+        console.log(device, Dap.platform.device())
+    </script>
 </html>
