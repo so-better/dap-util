@@ -11,13 +11,13 @@ module.exports = {
     device() {
         const userAgent = window.navigator.userAgent
         return {
-            pc: !userAgent.match(/AppleWebKit.*Mobile.*/),
+            PC: !userAgent.match(/AppleWebKit.*Mobile.*/),
             //是否移动终端
-            mobile: !!userAgent.match(/AppleWebKit.*Mobile.*/),
+            Mobile: !!userAgent.match(/AppleWebKit.*Mobile.*/),
             //是否iPhone
             iPhone: userAgent.includes('iPhone'),
             //是否手机
-            phone:
+            Phone:
                 (userAgent.includes('Android') &&
                     /(?:Mobile)/.test(userAgent)) ||
                 userAgent.includes('iPhone') ||
@@ -30,8 +30,6 @@ module.exports = {
                 (userAgent.includes('Android') &&
                     !/(?:Mobile)/.test(userAgent)) ||
                 (userAgent.includes('Firefox') && /(?:Tablet)/.test(userAgent)),
-            //web应用程序
-            webApp: !userAgent.includes('Safari'),
             //windows手机
             WindowsPhone: /(?:Windows Phone)/.test(userAgent)
         }
@@ -94,7 +92,7 @@ module.exports = {
         return {
             //是否Windows系统
             Windows: userAgent.includes('Windows'),
-            //win32/win64
+            //x64/x32
             Windows_CPU: (function () {
                 if (
                     userAgent.toLocaleLowerCase().includes('win64') ||

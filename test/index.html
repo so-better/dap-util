@@ -22,7 +22,7 @@
         charset="utf-8"
     ></script>
     <script type="text/javascript">
-        const device = Dap.platform.os()
-        console.log(device, Dap.platform.device())
+        const { Windows, Windows_Version } = Dap.platform.os()
+        console.log(Windows, Windows_Version)
     </script>
 </html>
