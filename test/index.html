@@ -7,22 +7,33 @@
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
         />
         <title>Dap</title>
-        <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.6/vconsole.min.js"></script>
+        <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.14.6/vconsole.min.js"></script>
         <script>
             new VConsole()
-        </script>
+        </script> -->
     </head>
     <body>
-        <div id="app"></div>
+        <div
+            id="app"
+            style="
+                height: 298.4px;
+                padding: 20px;
+                border: 1px solid #f30;
+                overflow: auto;
+                box-sizing: border-box;
+            "
+        >
+            <div style="height: 1000px"></div>
+        </div>
     </body>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script
         src="../dist/dap-util.js"
         type="text/javascript"
         charset="utf-8"
     ></script>
     <script type="text/javascript">
-        const { Windows, Windows_Version } = Dap.platform.os()
-        console.log(Windows, Windows_Version)
+        Dap.element.scrollTopBottomTrigger('#app', res => {
+            console.log(res)
+        })
     </script>
 </html>

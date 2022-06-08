@@ -304,20 +304,11 @@ module.exports = {
                 if (scrollEle == window) {
                     height = window.innerHeight
                 } else {
-                    let borderTop = parseFloat(
-                        this.getCssStyle(scrollEle, 'border-top-width')
-                    )
-                    let borderBottom = parseFloat(
-                        this.getCssStyle(scrollEle, 'border-bottom-width')
-                    )
-                    height = numberUtil.subtract(
-                        scrollEle.offsetHeight,
-                        borderTop,
-                        borderBottom
-                    )
+                    height = scrollEle.clientHeight
                 }
+                //+1是为了防止出现小数点误差
                 if (
-                    numberUtil.add(this.getScrollTop(scrollEle), height) >=
+                    numberUtil.add(this.getScrollTop(scrollEle), height) + 1 >=
                         this.getScrollHeight(scrollEle) &&
                     height != this.getScrollHeight(scrollEle)
                 ) {
