@@ -23,7 +23,7 @@ module.exports = {
             throw new Error('The third argument cannot be less than 0')
         }
         return (
-            original.substr(0, index) +
+            original.substring(0, index) +
             str +
             original.substring(index, original.length)
         )
@@ -52,7 +52,7 @@ module.exports = {
             throw new Error('The third argument cannot be less than 0')
         }
         return (
-            original.substr(0, index) +
+            original.substring(0, index) +
             original.substring(index + num, original.length)
         )
     },
