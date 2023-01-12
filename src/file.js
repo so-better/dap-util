@@ -15,7 +15,7 @@ module.exports = {
      * @param {Object} file
      */
     dataFileToBase64(file) {
-        return new Promise((reslove, reject) => {
+        return new Promise((resolve, reject) => {
             if (!file || !(file instanceof File)) {
                 reject(new TypeError('The argument must be a File object'))
             }
@@ -25,7 +25,7 @@ module.exports = {
                 // 图片的 base64 格式, 可以直接当成 img 的 src 属性值
                 let dataURL = reader.result
                 // 下面逻辑处理
-                reslove(dataURL)
+                resolve(dataURL)
             }
         })
     },

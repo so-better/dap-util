@@ -416,7 +416,7 @@ module.exports = {
         ) {
             isWindow = true
         }
-        return new Promise((reslove, reject) => {
+        return new Promise((resolve, reject) => {
             if (time <= 0) {
                 if (isWindow) {
                     document.documentElement.scrollTop =
@@ -424,7 +424,7 @@ module.exports = {
                 } else {
                     el.scrollTop = number
                 }
-                reslove()
+                resolve()
             } else {
                 let spacingTime = 10 // 设置循环的间隔时间  值越小消耗性能越高
                 let spacingIndex = numberUtil.divide(time, spacingTime) // 计算循环的次数
@@ -450,7 +450,7 @@ module.exports = {
                         }
                     } else {
                         clearInterval(scrollTimer) // 清除计时器
-                        reslove()
+                        resolve()
                     }
                 }, spacingTime)
             }
@@ -548,7 +548,7 @@ module.exports = {
         ) {
             isWindow = true
         }
-        return new Promise((reslove, reject) => {
+        return new Promise((resolve, reject) => {
             if (time <= 0) {
                 if (isWindow) {
                     document.documentElement.scrollLeft =
@@ -556,7 +556,7 @@ module.exports = {
                 } else {
                     el.scrollLeft = number
                 }
-                reslove()
+                resolve()
             } else {
                 let spacingTime = 10 // 设置循环的间隔时间  值越小消耗性能越高
                 let spacingIndex = numberUtil.divide(time, spacingTime) // 计算循环的次数
@@ -582,7 +582,7 @@ module.exports = {
                         }
                     } else {
                         clearInterval(scrollTimer) // 清除计时器
-                        reslove()
+                        resolve()
                     }
                 }, spacingTime)
             }
