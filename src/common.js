@@ -1,4 +1,5 @@
 const elementUtil = require('./element')
+
 /**
  * 常用方法
  */

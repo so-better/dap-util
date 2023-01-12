@@ -8,6 +8,7 @@ const color = require('./color')
 const file = require('./file')
 const string = require('./string')
 const platform = require('./platform')
+const speech = require('./speech')
 
 module.exports = {
     number,
@@ -19,5 +20,6 @@ module.exports = {
     color,
     file,
     string,
-    platform
+    platform,
+    speech
 }
