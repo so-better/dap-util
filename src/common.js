@@ -214,15 +214,10 @@ module.exports = {
         if (!text || typeof text != 'string') {
             throw new TypeError('No text to copy is defined')
         }
-        let el = elementUtil.string2dom('<span>' + text + '</span>')
+        let el = elementUtil.string2dom('<input type="text" />')
         document.body.appendChild(el)
-        const range = document.createRange()
-        range.selectNode(el)
-        const selection = window.getSelection()
-        if (selection.rangeCount > 0) {
-            selection.removeAllRanges()
-        }
-        selection.addRange(range)
+        el.value = text
+        el.select()
         document.execCommand('copy')
         document.body.removeChild(el)
     }
