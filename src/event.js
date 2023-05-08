@@ -95,8 +95,8 @@ module.exports = {
 	 */
 	on(el, eventName, fn, options) {
 		//参数el校验
-		if (!elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
-			throw new TypeError('The first argument must be an element node')
+		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		//参数eventName校验
 		if (!eventName || typeof eventName != 'string') {
@@ -125,8 +125,8 @@ module.exports = {
 	 */
 	off(el, eventName) {
 		//参数el校验
-		if (!elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
-			throw new TypeError('The first argument must be an element node')
+		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		let events = dataUtil.get(el, 'dap-defined-events')
 		if (!events) {

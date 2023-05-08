@@ -596,12 +596,11 @@ module.exports = {
 	 * 判断是否是元素节点
 	 * @param {Object} el
 	 */
-	isElement(el) {
-		if (el && el.nodeType === 1 && el instanceof Node) {
-			return true
-		} else {
-			return false
+	isElement(el, text = false) {
+		if (text) {
+			return el && (el.nodeType === 1 || el.nodeType === 3) && el instanceof Node
 		}
+		return el && el.nodeType === 1 && el instanceof Node
 	},
 
 	/**

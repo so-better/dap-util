@@ -1,6 +1,6 @@
 {
 	"name": "dap-util",
-	"version": "1.2.11",
+	"version": "1.2.12",
 	"description": "一个轻量的前端JavaScript工具库，专注于JavaScript，不关心UI",
 	"main": "dist/dap-util.js",
 	"private": false,
@@ -10,7 +10,6 @@
 	},
 	"author": "lingkai",
 	"license": "MIT",
-	"dependencies": {},
 	"babel": {
 		"presets": [
 			"env"
@@ -21,7 +20,9 @@
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.5",
 		"babel-preset-env": "^1.7.0",
-		"cross-env": "^7.0.3"
+		"cross-env": "^7.0.3",
+		"webpack": "^4.46.0",
+		"webpack-cli": "^4.10.0"
 	},
 	"repository": {
 		"type": "git",

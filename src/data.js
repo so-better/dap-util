@@ -10,7 +10,7 @@ module.exports = {
 	 * @param {Object} key
 	 */
 	remove(el, key) {
-		if (!elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+		if (!elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
 		let data = el[dataName] || {}
@@ -29,7 +29,7 @@ module.exports = {
 	 * @param {Object} key
 	 */
 	has(el, key) {
-		if (!elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+		if (!elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
 		if (key === undefined || key === null || key === '') {
@@ -45,7 +45,7 @@ module.exports = {
 	 * @param {Object} key
 	 */
 	get(el, key) {
-		if (!elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+		if (!elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
 		let data = el[dataName] || {}
@@ -64,7 +64,7 @@ module.exports = {
 	 * @param {Object} value
 	 */
 	set(el, key, value) {
-		if (!elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+		if (!elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
 		if (key === undefined || key === null || key === '') {
