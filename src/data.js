@@ -10,8 +10,9 @@ module.exports = {
 	 * @param {Object} key
 	 */
 	remove(el, key) {
-		if (!elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
-			throw new TypeError('The first argument must be an element')
+		//参数el校验
+		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		let data = el[dataName] || {}
 		//未指定参数,删除全部
@@ -29,8 +30,9 @@ module.exports = {
 	 * @param {Object} key
 	 */
 	has(el, key) {
-		if (!elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
-			throw new TypeError('The first argument must be an element')
+		//参数el校验
+		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		if (key === undefined || key === null || key === '') {
 			throw new TypeError('The second parameter must be a unique key')
@@ -45,8 +47,9 @@ module.exports = {
 	 * @param {Object} key
 	 */
 	get(el, key) {
-		if (!elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
-			throw new TypeError('The first argument must be an element')
+		//参数el校验
+		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		let data = el[dataName] || {}
 		//未指定参数,返回全部
@@ -64,8 +67,9 @@ module.exports = {
 	 * @param {Object} value
 	 */
 	set(el, key, value) {
-		if (!elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
-			throw new TypeError('The first argument must be an element')
+		//参数el校验
+		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		if (key === undefined || key === null || key === '') {
 			throw new TypeError('The second parameter must be a unique key')
