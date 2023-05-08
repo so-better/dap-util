@@ -1,6 +1,6 @@
 {
 	"name": "dap-util",
-	"version": "1.2.14",
+	"version": "1.2.15",
 	"description": "一个轻量的前端JavaScript工具库，专注于JavaScript，不关心UI",
 	"main": "dist/dap-util.js",
 	"private": false,
