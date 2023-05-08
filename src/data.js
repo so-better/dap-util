@@ -11,7 +11,7 @@ module.exports = {
 	 */
 	remove(el, key) {
 		//参数el校验
-		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+		if (!(el instanceof Document) && !elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		let data = el[dataName] || {}
@@ -31,7 +31,7 @@ module.exports = {
 	 */
 	has(el, key) {
 		//参数el校验
-		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+		if (!(el instanceof Document) && !elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		if (key === undefined || key === null || key === '') {
@@ -48,7 +48,7 @@ module.exports = {
 	 */
 	get(el, key) {
 		//参数el校验
-		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+		if (!(el instanceof Document) && !elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		let data = el[dataName] || {}
@@ -68,7 +68,7 @@ module.exports = {
 	 */
 	set(el, key, value) {
 		//参数el校验
-		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+		if (!(el instanceof Document) && !elementUtil.isElement(el, true) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
 		}
 		if (key === undefined || key === null || key === '') {
