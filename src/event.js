@@ -1,6 +1,6 @@
-const dataUtil = require('./data')
-const elementUtil = require('./element')
-const commonUtil = require('./common')
+import dataUtil from './data'
+import elementUtil from './element'
+import commonUtil from './common'
 
 //解析绑定事件名称字符串
 const parseEventName = eventName => {
@@ -85,7 +85,7 @@ const unbindSingleListener = (el, eventName, guid) => {
 	dataUtil.set(el, 'dap-defined-events', events)
 }
 
-module.exports = {
+export default {
 	/**
 	 * 绑定事件
 	 * @param {Object} el 元素节点

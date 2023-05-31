@@ -1,18 +1,15 @@
-const stringUtil = require('./string')
-const numberUtil = require('./number')
+import stringUtil from './string'
+import numberUtil from './number'
 /**
  * element相关工具方法
  */
-module.exports = {
+export default {
 	/**
 	 * 判断是否是Window对象
 	 * @param {Object} data 入参
 	 */
 	isWindow(data) {
-		if (data && data.constructor && data.constructor.name) {
-			return data.constructor.name == 'Window'
-		}
-		return false
+		return data && data instanceof Window
 	},
 	/**
 	 * 获取元素距离指定祖先元素左侧/顶部/底部/右侧的距离
@@ -596,22 +593,19 @@ module.exports = {
 	 * 判断是否是元素节点
 	 * @param {Object} el
 	 */
-	isElement(el, text = false) {
-		if (text) {
-			return el && (el.nodeType === 1 || el.nodeType === 3) && el instanceof Node
-		}
-		return el && el.nodeType === 1 && el instanceof Node
+	isElement(el) {
+		return el && el instanceof Node && el.nodeType === 1
 	},
 
 	/**
 	 * 字符串转dom
 	 * @param {Object} str
 	 */
-	string2dom(str) {
+	string2dom(str, parentTag = 'div') {
 		if (!str || typeof str != 'string') {
 			throw new TypeError('The argument must be an HTML string')
 		}
-		let parentEle = document.createElement('div')
+		let parentEle = document.createElement(parentTag)
 		parentEle.innerHTML = str
 		if (parentEle.children.length == 1) {
 			return parentEle.children[0]

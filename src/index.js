@@ -1,25 +1,15 @@
-const number = require('./number')
-const data = require('./data')
-const element = require('./element')
-const event = require('./event')
-const common = require('./common')
-const date = require('./date')
-const color = require('./color')
-const file = require('./file')
-const string = require('./string')
-const platform = require('./platform')
-const speech = require('./speech')
+import number from './number'
+import data from './data'
+import element from './element'
+import event from './event'
+import common from './common'
+import date from './date'
+import color from './color'
+import file from './file'
+import string from './string'
+import platform from './platform'
+import speech from './speech'
 
-module.exports = {
-    number,
-    data,
-    element,
-    event,
-    common,
-    date,
-    color,
-    file,
-    string,
-    platform,
-    speech
-}
+const obj = { number, data, element, event, common, date, color, file, string, platform, speech }
+
+export { obj as default, number, data, element, event, common, date, color, file, string, platform, speech }
