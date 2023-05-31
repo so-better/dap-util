@@ -26,7 +26,7 @@ export default defineConfig({
 		minify: 'terser',
 		lib: {
 			entry: path.resolve(__dirname, 'src/index.js'),
-			name: 'dap-util',
+			name: 'Dap',
 			fileName: format => `dap-util.${format}.js`
 		},
 		rollupOptions: {
