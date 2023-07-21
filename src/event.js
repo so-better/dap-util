@@ -149,5 +149,21 @@ export default {
 		result.forEach(res => {
 			unbindSingleListener(el, res.eventName, res.guid)
 		})
+	},
+
+	/**
+	 * 获取绑定的所有事件
+	 * @param {*} el
+	 */
+	get(el) {
+		//参数el校验
+		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
+			throw new TypeError('The first argument must be an element node or window or document')
+		}
+		let events = dataUtil.get(el, 'dap-defined-events')
+		if (!events) {
+			return
+		}
+		return events
 	}
 }
