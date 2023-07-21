@@ -34,7 +34,7 @@ const updateEvents = events => {
 
 //给元素添加单个事件
 const bindSingleListener = (el, eventName, guid, fn, options) => {
-	//获取该元素上的事件对象events:{click_0:{type:'click',fn:fn}}
+	//获取该元素上的事件对象events:{click.0:{type:'click',fn:fn}}
 	let events = dataUtil.get(el, 'dap-defined-events') || {}
 	//如果没有设定guid
 	if (!guid) {
@@ -44,7 +44,7 @@ const bindSingleListener = (el, eventName, guid, fn, options) => {
 		dataUtil.set(el, 'dap-event-guid', guid + 1)
 	}
 	//更改guid，结合事件名称作为存储的key值
-	guid = eventName + '_' + guid
+	guid = eventName + '.' + guid
 	//先判断是否已经含有同guid且同类型事件，有则移除
 	if (events[guid] && events[guid].type == eventName) {
 		el.removeEventListener(eventName, events[guid].fn, events[guid].options)
@@ -70,7 +70,7 @@ const unbindSingleListener = (el, eventName, guid) => {
 		if (events[key].type == eventName) {
 			//如果guid存在则移除该修饰符指定的事件，否则移除全部该类型事件
 			if (guid) {
-				if (key == eventName + '_' + guid) {
+				if (key == eventName + '.' + guid) {
 					el.removeEventListener(events[key].type, events[key].fn, events[key].options)
 					events[key] = undefined
 				}
