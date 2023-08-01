@@ -77,19 +77,6 @@ export default {
 		if (params == 'hex') {
 			reg = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/
 		}
-		//判断text是否为日期(./-以及年月日)
-		if (params == 'date') {
-			let reg1 = /^((\d{4})(-)(\d{2})(-)(\d{2}))$/
-			let reg2 = /^(\d{4})(\/)(\d{2})(\/)(\d{2})$/
-			let reg3 = /^(\d{4})(\.)(\d{2})(\.)(\d{2})$/
-			let reg4 = /^(\d{4})(年)(\d{2})(月)(\d{2})(日)$/
-			return reg1.test(text) || reg2.test(text) || reg3.test(text) || reg4.test(text)
-		}
-		//判断text是否为时间
-		if (params == 'time') {
-			//如22:22:22
-			reg = /^(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$/
-		}
 		//判断text是否为QQ号码
 		if (params == 'QQ') {
 			reg = /^[1-9][0-9]{4,10}$/
@@ -205,11 +192,9 @@ export default {
 		if (!text || typeof text != 'string') {
 			throw new TypeError('No text to copy is defined')
 		}
-		let el = elementUtil.string2dom('<input type="text" />')
-		document.body.appendChild(el)
-		el.value = text
-		el.select()
-		document.execCommand('copy')
-		document.body.removeChild(el)
+		if (!navigator.clipboard) {
+			throw new Error("navigator.clipboard must be obtained in a secure environment, such as localhost, 127.0.0.1, or https, so the editor's copy, paste, and cut functions cannot be used")
+		}
+		return navigator.clipboard.writeText(text)
 	}
 }
