@@ -7,7 +7,11 @@
 import Dap from '../src'
 export default {
 	mounted() {
-		console.log(Dap.element.string2dom('<td>444</td>', 'p'))
+		const rgb = [0, 100, 200]
+		console.log('rgb', rgb)
+		const hsv = Dap.color.rgb2hsv(rgb)
+		console.log('hsv', hsv)
+		console.log('rgb', Dap.color.hsv2rgb(hsv))
 	},
 	methods: {
 		copyText() {

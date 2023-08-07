@@ -39,10 +39,7 @@ export default {
 		} else if (max === b) {
 			h = 60 * ((r - g) / (max - min)) + 240
 		}
-		h = parseInt(h)
-		s = parseInt(s * 100)
-		v = parseInt(v * 100)
-		return [h, s, v]
+		return [h, s * 100, v * 100]
 	},
 
 	/**
@@ -102,9 +99,9 @@ export default {
 			default:
 				break
 		}
-		r = parseInt(r * 255.0)
-		g = parseInt(g * 255.0)
-		b = parseInt(b * 255.0)
+		r = parseInt(r * 255)
+		g = parseInt(g * 255)
+		b = parseInt(b * 255)
 		return [r, g, b]
 	},
 
