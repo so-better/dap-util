@@ -30,7 +30,7 @@ export default {
 			reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
 		}
 		//判断text是否为4-16位的用户名(字母数字下划线)
-		if (params == 'userName') {
+		if (params == 'username') {
 			reg = /^[a-zA-Z0-9_]{4,16}$/
 		}
 		//判断text是否为正整数

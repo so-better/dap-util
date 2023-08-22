@@ -206,7 +206,7 @@ export default {
 		}
 		let classList = el.classList
 		let classArray = stringUtil.trim(className).split(/\s+/) //按照空格划分
-		classArray.forEach((item, index) => {
+		classArray.forEach(item => {
 			classList.remove(item)
 		})
 	},
@@ -226,7 +226,7 @@ export default {
 		}
 		let classList = el.classList
 		let classArray = stringUtil.trim(className).split(/\s+/) //按照空格划分
-		classArray.forEach((item, index) => {
+		classArray.forEach(item => {
 			classList.add(item)
 		})
 	},
@@ -246,7 +246,7 @@ export default {
 		}
 		let classList = el.classList
 		let classArray = stringUtil.trim(className).split(/\s+/) //按照空格划分
-		return classArray.every((item, index) => {
+		return classArray.every(item => {
 			return classList.contains(item)
 		})
 	},
