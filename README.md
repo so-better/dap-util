@@ -1,1 +1,3 @@
-#### 详情请参考 https://www.mvi-web.cn/library/31
+#### 一个提供大量便捷高效方法的 JS 库
+
+> 具体使用方法请参阅[：dap-util](https://www.mvi-web.cn/library/dap-util)
