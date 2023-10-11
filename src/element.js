@@ -57,7 +57,7 @@ export default {
 		if (!this.isElement(parentNode)) {
 			throw new TypeError('The first argument must be an element')
 		}
-		if (!this.isElement(childNode, true)) {
+		if (!this.isElement(childNode)) {
 			throw new TypeError('The second argument must be an element')
 		}
 		if (parentNode === childNode) {
@@ -83,7 +83,7 @@ export default {
 		if (!this.isElement(parentNode)) {
 			throw new TypeError('The first argument must be an element')
 		}
-		if (!this.isElement(childNode, true)) {
+		if (!this.isElement(childNode)) {
 			throw new TypeError('The second argument must be an element')
 		}
 		if (parentNode === childNode) {
