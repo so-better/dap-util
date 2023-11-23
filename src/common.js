@@ -1,5 +1,3 @@
-import elementUtil from './element'
-
 /**
  * 常用方法
  */

@@ -1,6 +1,6 @@
 <template>
 	<div style="padding: 20px">
-		<button @click="copyText">按钮</button>
+		<input type="file" @change="change" />
 	</div>
 </template>
 <script>
@@ -14,9 +14,10 @@ export default {
 		console.log('rgb', Dap.color.hsv2rgb(hsv))
 	},
 	methods: {
-		copyText() {
-			Dap.common.copyText('复制成功').then(() => {
-				console.log('复制成功')
+		change(e) {
+			const file = e.currentTarget.files[0]
+			Dap.file.compressImage(file).then(res => {
+				console.log(res)
 			})
 		}
 	}
