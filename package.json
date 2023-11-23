@@ -1,9 +1,9 @@
 {
 	"name": "dap-util",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"private": false,
 	"type": "module",
-	"author": "lingkai",
+	"author": "ling0523",
 	"main": "lib/dap-util.umd.js",
 	"module": "lib/dap-util.es.js",
 	"license": "MIT",
