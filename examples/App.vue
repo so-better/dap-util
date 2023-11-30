@@ -7,19 +7,23 @@
 import Dap from '../src'
 export default {
 	mounted() {
-		const rgb = [0, 100, 200]
-		console.log('rgb', rgb)
-		const hsv = Dap.color.rgb2hsv(rgb)
-		console.log('hsv', hsv)
-		console.log('rgb', Dap.color.hsv2rgb(hsv))
+		const a = {
+			a: {
+				xx: 1
+			},
+			b: 2
+		}
+		const b = {
+			a: {
+				xx: 1,
+				prop: 1
+			},
+			b: 2
+		}
+		console.log(Dap.common.equal(a, b))
 	},
 	methods: {
-		change(e) {
-			const file = e.currentTarget.files[0]
-			Dap.file.compressImage(file).then(res => {
-				console.log(res)
-			})
-		}
+		change(e) {}
 	}
 }
 </script>
