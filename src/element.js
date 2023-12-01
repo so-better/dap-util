@@ -12,9 +12,9 @@ export default {
 		return data && data instanceof Window
 	},
 	/**
-	 * 获取元素距离指定祖先元素左侧/顶部/底部/右侧的距离
+	 * 获取元素距离某个定位祖先元素左侧/顶部/底部/右侧的距离
 	 * @param {Object} el 元素
-	 * @param {Object} root 父元素或者祖先元素，未指定则为document.body
+	 * @param {Object} root 定位父元素或者祖先元素，未指定则为document.body
 	 */
 	getElementPoint(el, root) {
 		if (!this.isElement(el)) {
@@ -48,12 +48,12 @@ export default {
 	},
 
 	/**
-	 * 判断某个节点是否包含指定节点，包含相等关系和父子关系
-	 * @param {Object} parentNode 父节点或祖先节点
-	 * @param {Object} childNode 子节点
+	 * 判断某个元素是否包含指定元素，包含相等关系和父子关系
+	 * @param {Object} parentNode 父元素或祖先元素
+	 * @param {Object} childNode 子元素
 	 */
 	isContains(parentNode, childNode) {
-		//元素不是节点
+		//不是元素
 		if (!this.isElement(parentNode)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -74,12 +74,12 @@ export default {
 	},
 
 	/**
-	 * 判断某个节点是否是指定节点的父节点
-	 * @param {Object} parentNode 父节点
-	 * @param {Object} childNode 子节点
+	 * 判断某个元素是否是指定元素的父元素
+	 * @param {Object} parentNode 父元素
+	 * @param {Object} childNode 子元素
 	 */
 	isParentNode(parentNode, childNode) {
-		//元素不是节点
+		//不是元素
 		if (!this.isElement(parentNode)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -93,12 +93,12 @@ export default {
 	},
 
 	/**
-	 * 查找某个节点下指定选择器的子元素
-	 * @param {Object} el 元素节点
+	 * 查找某个元素下指定选择器的子元素
+	 * @param {Object} el 元素
 	 * @param {Object} selector 支持多选择器，等同于querySelectorAll的参数
 	 */
 	children(el, selector) {
-		//元素不是节点
+		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -112,12 +112,12 @@ export default {
 	},
 
 	/**
-	 * 查找某个节点下指定选择器的兄弟节点
-	 * @param {Object} el 元素节点
+	 * 查找某个元素下指定选择器的兄弟元素
+	 * @param {Object} el 元素
 	 * @param {Object} selector 取值等同于queryselectorAll的参数，支持多选择器
 	 */
 	siblings(el, selector) {
-		//元素不是节点
+		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -193,11 +193,11 @@ export default {
 
 	/**
 	 * 移除class
-	 * @param {Object} el 元素节点
+	 * @param {Object} el 元素
 	 * @param {Object} className 支持多类,以空格划分
 	 */
 	removeClass(el, className) {
-		//元素不是节点
+		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -213,11 +213,11 @@ export default {
 
 	/**
 	 * 添加class
-	 * @param {Object} el 元素节点
+	 * @param {Object} el 元素
 	 * @param {Object} className 支持多类,以空格划分
 	 */
 	addClass(el, className) {
-		//元素不是节点
+		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -233,11 +233,11 @@ export default {
 
 	/**
 	 * 判断指定元素是否含有指定类名
-	 * @param {Object} el 元素节点
+	 * @param {Object} el 元素
 	 * @param {Object} className 支持多类,以空格划分
 	 */
 	hasClass(el, className) {
-		//元素不是节点
+		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -408,7 +408,7 @@ export default {
 			el = document.body.querySelector(el)
 		}
 		let scrollTop = 0
-		//如果是元素节点
+		//如果是元素
 		if (this.isElement(el) && el != document.body && el != document.documentElement && el != window) {
 			scrollTop = el.scrollTop
 		} else {
@@ -430,7 +430,7 @@ export default {
 			el = document.body.querySelector(el)
 		}
 		let scrollLeft = 0
-		//如果是元素节点
+		//如果是元素
 		if (this.isElement(el) && el != document.body && el != document.documentElement && el != window) {
 			scrollLeft = el.scrollLeft
 		} else {
@@ -495,7 +495,7 @@ export default {
 	 * @param {Object} cssName 样式名称
 	 */
 	getCssStyle(el, cssName) {
-		//元素不是节点
+		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -590,7 +590,7 @@ export default {
 	},
 
 	/**
-	 * 判断是否是元素节点
+	 * 判断是否是元素
 	 * @param {Object} el
 	 */
 	isElement(el) {
@@ -610,7 +610,7 @@ export default {
 		if (parentEle.children.length == 1) {
 			return parentEle.children[0]
 		} else {
-			return parentEle.children
+			return Array.from(parentEle.children)
 		}
 	}
 }

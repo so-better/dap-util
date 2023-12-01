@@ -1,5 +1,6 @@
 <template>
 	<div style="padding: 20px">
+		<div style="height: 3000px"></div>
 		<input type="file" @change="change" />
 	</div>
 </template>
@@ -7,20 +8,7 @@
 import Dap from '../src'
 export default {
 	mounted() {
-		const a = {
-			a: {
-				xx: 1
-			},
-			b: 2
-		}
-		const b = {
-			a: {
-				xx: 1,
-				prop: 1
-			},
-			b: 2
-		}
-		console.log(Dap.common.equal(a, b))
+		console.log(Dap.platform.os())
 	},
 	methods: {
 		change(e) {}

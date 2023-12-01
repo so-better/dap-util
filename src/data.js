@@ -61,7 +61,7 @@ export default {
 	},
 
 	/**
-	 * 获取元素指定数据
+	 * 设置元素指定数据
 	 * @param {Object} el
 	 * @param {Object} key
 	 * @param {Object} value

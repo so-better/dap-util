@@ -90,9 +90,11 @@ export default {
 			Windows_Version: (function () {
 				if (userAgent.includes('Windows NT 6.1') || userAgent.includes('Windows 7')) {
 					return 'Win7'
-				} else if (userAgent.includes('Windows NT 6.3') || userAgent.includes('Windows NT 6.2') || userAgent.includes('Windows NT 8')) {
+				}
+				if (userAgent.includes('Windows NT 6.3') || userAgent.includes('Windows NT 6.2') || userAgent.includes('Windows NT 8')) {
 					return 'Win8'
-				} else if (userAgent.includes('Windows NT 10') || userAgent.includes('Windows NT 6.4')) {
+				}
+				if (userAgent.includes('Windows NT 10') || userAgent.includes('Windows NT 6.4')) {
 					return 'Win10'
 				}
 				return ''
