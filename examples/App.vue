@@ -8,7 +8,7 @@
 import Dap from '../src'
 export default {
 	mounted() {
-		console.log(Dap.platform.os())
+		console.log(Dap.string.replace('这是一个美好且充满无限可能的世界', 4, 13, '糟糕'))
 	},
 	methods: {
 		change(e) {}

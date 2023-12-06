@@ -81,10 +81,10 @@ export default {
 
 	/**
 	 * 去除字符串空格
-	 * @param {Object} str
+	 * @param {Object} str 原始字符串
 	 * @param {Object} global 为true时去除所有空格，否则只去除两边空格
 	 */
-	trim(str, global) {
+	trim(str, global = false) {
 		if (typeof str != 'string') {
 			throw new TypeError('The first argument must be a string')
 		}
