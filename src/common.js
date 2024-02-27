@@ -65,7 +65,7 @@ export default {
 		}
 		//判断text是否为网址
 		if (param == 'url') {
-			reg = /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([\da-z\.]{2,6})([\/\w \.-]*)*\/?$/
+			reg = /^(https?|ftp):\/\/(-\.)?([^\s\/?\.#-]+\.?)+(\/[^\s]*)?$/
 		}
 		//判断是否为ip地址
 		if (param == 'IPv4') {
