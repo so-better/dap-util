@@ -2,14 +2,19 @@ import dataUtil from './data'
 import elementUtil from './element'
 import commonUtil from './common'
 
+type EventNameObjType = {
+	eventName?: string
+	guid?: any
+}
+
 //解析绑定事件名称字符串
-const parseEventName = eventName => {
+const parseEventName = (eventName: string) => {
 	//先以空格划分
 	let eventNames = eventName.split(/[\s]+/g)
-	let result = []
+	let result: EventNameObjType[] = []
 	eventNames.forEach(name => {
 		let arr = name.split('.')
-		let obj = {
+		let obj: EventNameObjType = {
 			eventName: arr[0]
 		}
 		if (arr.length > 1) {
@@ -21,8 +26,8 @@ const parseEventName = eventName => {
 }
 
 //更新事件对象，移除空的元素
-const updateEvents = events => {
-	let obj = {}
+const updateEvents = (events: any) => {
+	let obj: any = {}
 	let keys = Object.keys(events)
 	keys.forEach(key => {
 		if (events[key]) {
@@ -33,7 +38,7 @@ const updateEvents = events => {
 }
 
 //给元素添加单个事件
-const bindSingleListener = (el, eventName, guid, fn, options) => {
+const bindSingleListener = (el: HTMLElement, eventName: string, guid: any, fn: (e: Event) => void, options: AddEventListenerOptions | undefined) => {
 	//获取该元素上的事件对象events:{click.0:{type:'click',fn:fn}}
 	let events = dataUtil.get(el, 'dap-defined-events') || {}
 	//如果没有设定guid
@@ -61,7 +66,7 @@ const bindSingleListener = (el, eventName, guid, fn, options) => {
 }
 
 //移除元素的单个事件
-const unbindSingleListener = (el, eventName, guid) => {
+const unbindSingleListener = (el: HTMLElement, eventName: string, guid: any) => {
 	let events = dataUtil.get(el, 'dap-defined-events') || {}
 	let keys = Object.keys(events)
 	let length = keys.length
@@ -93,7 +98,7 @@ export default {
 	 * @param {Object} fn 函数
 	 * @param {Object} options 参数
 	 */
-	on(el, eventName, fn, options) {
+	on(el: HTMLElement, eventName: string, fn: (e: Event) => void, options: AddEventListenerOptions | undefined) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
@@ -113,8 +118,8 @@ export default {
 		//解析eventName，获取事件数组以及guid标志
 		const result = parseEventName(eventName)
 		//批量添加事件
-		result.forEach(res => {
-			bindSingleListener(el, res.eventName, res.guid, fn.bind(el), options)
+		result.forEach((res: EventNameObjType) => {
+			bindSingleListener(el, res.eventName!, res.guid, fn.bind(el), options)
 		})
 	},
 
@@ -123,7 +128,7 @@ export default {
 	 * @param {Object} el 元素节点
 	 * @param {Object} eventName 事件名称
 	 */
-	off(el, eventName) {
+	off(el: HTMLElement, eventName: string) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
@@ -146,8 +151,8 @@ export default {
 		}
 		//解析eventName，获取事件数组以及guid标志
 		const result = parseEventName(eventName)
-		result.forEach(res => {
-			unbindSingleListener(el, res.eventName, res.guid)
+		result.forEach((res: EventNameObjType) => {
+			unbindSingleListener(el, res.eventName!, res.guid)
 		})
 	},
 
@@ -155,7 +160,7 @@ export default {
 	 * 获取绑定的所有事件
 	 * @param {*} el
 	 */
-	get(el) {
+	get(el: HTMLElement) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')

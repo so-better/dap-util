@@ -9,7 +9,7 @@ export default {
 	 * @param {Object} str 插入的字符串
 	 * @param {Object} index 插入的位置
 	 */
-	insert(original, str, index) {
+	insert(original: string, str: string, index: number) {
 		if (!original || typeof original != 'string') {
 			throw new TypeError('The first argument must be a string')
 		}
@@ -31,7 +31,7 @@ export default {
 	 * @param {Object} index 删除的位置序列
 	 * @param {Object} num 删除的字符串长度
 	 */
-	delete(original, index, num) {
+	delete(original: string, index: number, num: number) {
 		if (!original || typeof original != 'string') {
 			throw new TypeError('The first argument must be a string')
 		}
@@ -57,7 +57,7 @@ export default {
 	 * @param {Object} end 结束位置
 	 * @param {Object} str 替换的字符串
 	 */
-	replace(original, start, end, str) {
+	replace(original: string, start: number, end: number, str: string) {
 		if (!original || typeof original != 'string') {
 			throw new TypeError('The first argument must be a string')
 		}
@@ -84,7 +84,7 @@ export default {
 	 * @param {Object} str 原始字符串
 	 * @param {Object} global 为true时去除所有空格，否则只去除两边空格
 	 */
-	trim(str, global = false) {
+	trim(str: string, global: boolean = false) {
 		if (typeof str != 'string') {
 			throw new TypeError('The first argument must be a string')
 		}

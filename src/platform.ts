@@ -2,7 +2,7 @@
 export default {
 	//设备语言类型
 	language() {
-		return window.navigator.browserLanguage || window.navigator.language
+		return (<any>window.navigator).browserLanguage || window.navigator.language
 	},
 
 	/**

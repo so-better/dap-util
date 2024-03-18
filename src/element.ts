@@ -1,5 +1,19 @@
 import stringUtil from './string'
 import numberUtil from './number'
+
+type ScrollOptionsType = {
+	el?: HTMLElement | string | Window
+	time?: number
+	number?: number
+}
+
+type PlacementType = {
+	left: number
+	top: number
+	right: number
+	bottom: number
+}
+
 /**
  * element相关工具方法
  */
@@ -8,7 +22,7 @@ export default {
 	 * 判断是否是Window对象
 	 * @param {Object} data 入参
 	 */
-	isWindow(data) {
+	isWindow(data: any) {
 		return data && data instanceof Window
 	},
 	/**
@@ -16,7 +30,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} root 定位父元素或者祖先元素，未指定则为document.body
 	 */
-	getElementPoint(el, root) {
+	getElementPoint(el: HTMLElement, root: HTMLElement): PlacementType {
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -35,7 +49,7 @@ export default {
 		while (this.isElement(el) && this.isContains(root, el) && root !== el) {
 			offsetTop += el.offsetTop //叠加父容器的上边距
 			offsetLeft += el.offsetLeft //叠加父容器的左边距
-			el = el.offsetParent
+			el = <HTMLElement>el.offsetParent
 		}
 		let offsetRight = root.offsetWidth - offsetLeft - obj.offsetWidth
 		let offsetBottom = root.offsetHeight - offsetTop - obj.offsetHeight
@@ -52,7 +66,7 @@ export default {
 	 * @param {Object} parentNode 父元素或祖先元素
 	 * @param {Object} childNode 子元素
 	 */
-	isContains(parentNode, childNode) {
+	isContains(parentNode: HTMLElement, childNode: HTMLElement) {
 		//不是元素
 		if (!this.isElement(parentNode)) {
 			throw new TypeError('The first argument must be an element')
@@ -78,7 +92,7 @@ export default {
 	 * @param {Object} parentNode 父元素
 	 * @param {Object} childNode 子元素
 	 */
-	isParentNode(parentNode, childNode) {
+	isParentNode(parentNode: HTMLElement, childNode: HTMLElement) {
 		//不是元素
 		if (!this.isElement(parentNode)) {
 			throw new TypeError('The first argument must be an element')
@@ -97,7 +111,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} selector 支持多选择器，等同于querySelectorAll的参数
 	 */
-	children(el, selector) {
+	children(el: HTMLElement, selector: string) {
 		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
@@ -116,7 +130,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} selector 取值等同于queryselectorAll的参数，支持多选择器
 	 */
-	siblings(el, selector) {
+	siblings(el: HTMLElement, selector: string) {
 		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
@@ -137,7 +151,7 @@ export default {
 	 * rem与px单位转换
 	 * @param {Object} num rem数值
 	 */
-	rem2px(num) {
+	rem2px(num: number) {
 		if (!numberUtil.isNumber(num)) {
 			throw new TypeError('The argument must be a number')
 		}
@@ -149,7 +163,7 @@ export default {
 	 * rem与px单位转换
 	 * @param {Object} num px数值
 	 */
-	px2rem(num) {
+	px2rem(num: number) {
 		if (!numberUtil.isNumber(num)) {
 			throw new TypeError('The argument must be a number')
 		}
@@ -161,16 +175,16 @@ export default {
 	 * 获取元素的内容宽度，内容宽度不包括border和padding
 	 * @param {Object} el 支持css选择器字符串，未指定则表示document.body
 	 */
-	width(el) {
+	width(el: HTMLElement | string) {
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
 		if (!this.isElement(el)) {
 			el = document.body
 		}
-		let clientWidth = el.clientWidth //获取元素包括内边距在内的宽度
-		let paddingLeft_width = parseFloat(this.getCssStyle(el, 'padding-left')) //左内边距
-		let paddingRight_width = parseFloat(this.getCssStyle(el, 'padding-right')) //右内边距宽度
+		let clientWidth = (<HTMLElement>el).clientWidth //获取元素包括内边距在内的宽度
+		let paddingLeft_width = parseFloat(this.getCssStyle(<HTMLElement>el, 'padding-left')) //左内边距
+		let paddingRight_width = parseFloat(this.getCssStyle(<HTMLElement>el, 'padding-right')) //右内边距宽度
 		return numberUtil.subtract(clientWidth, paddingLeft_width, paddingRight_width)
 	},
 
@@ -178,16 +192,16 @@ export default {
 	 * 获取元素的内容高度，内容高度不包括border和padding
 	 * @param {Object} el 支持css选择器字符串 未指定则表示document.body
 	 */
-	height(el) {
+	height(el: HTMLElement | string) {
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
 		if (!this.isElement(el)) {
 			el = document.body
 		}
-		let clientHeight = el.clientHeight //获取元素包括内边距在内的高度
-		let paddingTop_height = parseFloat(this.getCssStyle(el, 'padding-top')) //上内边距
-		let paddingBottom_height = parseFloat(this.getCssStyle(el, 'padding-bottom')) //下内边距宽度
+		let clientHeight = (<HTMLElement>el).clientHeight //获取元素包括内边距在内的高度
+		let paddingTop_height = parseFloat(this.getCssStyle(<HTMLElement>el, 'padding-top')) //上内边距
+		let paddingBottom_height = parseFloat(this.getCssStyle(<HTMLElement>el, 'padding-bottom')) //下内边距宽度
 		return numberUtil.subtract(clientHeight, paddingTop_height, paddingBottom_height)
 	},
 
@@ -196,7 +210,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} className 支持多类,以空格划分
 	 */
-	removeClass(el, className) {
+	removeClass(el: HTMLElement, className: string) {
 		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
@@ -216,7 +230,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} className 支持多类,以空格划分
 	 */
-	addClass(el, className) {
+	addClass(el: HTMLElement, className: string) {
 		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
@@ -236,7 +250,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} className 支持多类,以空格划分
 	 */
-	hasClass(el, className) {
+	hasClass(el: HTMLElement, className: string) {
 		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
@@ -256,20 +270,20 @@ export default {
 	 * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
 	 * @param {Object} callback 回调函数
 	 */
-	scrollTopBottomTrigger(el, callback) {
+	scrollTopBottomTrigger(el: HTMLElement | string | Window, callback: (options: any) => void) {
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
-		let scrollEle = window
+		let scrollEle: Window | HTMLElement = window
 		if (this.isElement(el) && el != document.body && el != document.documentElement) {
-			scrollEle = el
+			scrollEle = <HTMLElement>el
 		}
 		if (typeof el == 'function') {
 			callback = el
 		}
 		//滑动到底部时是否触发回调函数的标识，解决ios系统下多次触发回调的bug
 		let flag = true
-		scrollEle.addEventListener('scroll', e => {
+		scrollEle.addEventListener('scroll', () => {
 			if (this.getScrollTop(scrollEle) <= 0) {
 				//滑动到顶部
 				let options = {
@@ -293,10 +307,10 @@ export default {
 				if (scrollEle == window) {
 					height = window.innerHeight
 				} else {
-					height = scrollEle.clientHeight
+					height = (<HTMLElement>scrollEle).clientHeight
 				}
 				//+1是为了防止出现小数点误差
-				if (numberUtil.add(this.getScrollTop(scrollEle), height) + 1 >= this.getScrollHeight(scrollEle) && height != this.getScrollHeight(scrollEle)) {
+				if (numberUtil.add(this.getScrollTop(scrollEle), height) + 1 >= this.getScrollHeight(<HTMLElement>scrollEle) && height != this.getScrollHeight(<HTMLElement>scrollEle)) {
 					if (!flag) {
 						return
 					}
@@ -315,13 +329,13 @@ export default {
 	 * 获取文档或元素的总宽度
 	 * @param {Object} el 支持css选择器字符串 未指定则表示整个页面文档
 	 */
-	getScrollWidth(el) {
+	getScrollWidth(el: HTMLElement | string) {
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
 		let scrollWidth = 0
 		if (this.isElement(el) && el != document.documentElement && el != document.body) {
-			scrollWidth = el.scrollWidth
+			scrollWidth = (<HTMLElement>el).scrollWidth
 		} else {
 			if (document.documentElement.scrollWidth == 0 || document.body.scrollWidth == 0) {
 				scrollWidth = document.documentElement.scrollWidth || document.body.scrollWidth
@@ -336,13 +350,13 @@ export default {
 	 * 获取文档或者元素的总高度
 	 * @param {Object} el 支持css选择器字符串 未指定则表示整个页面文档
 	 */
-	getScrollHeight(el) {
+	getScrollHeight(el: HTMLElement | string) {
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
 		let scrollHeight = 0
 		if (this.isElement(el) && el != document.documentElement && el != document.body) {
-			scrollHeight = el.scrollHeight
+			scrollHeight = (<HTMLElement>el).scrollHeight
 		} else {
 			if (document.documentElement.scrollHeight == 0 || document.body.scrollHeight == 0) {
 				scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
@@ -357,30 +371,30 @@ export default {
 	 * 设置滚动条在Y轴上的距离
 	 * @param {Object} options {el,number,time} el支持css选择器字符串 未指定则为窗口滚动
 	 */
-	setScrollTop(options) {
+	setScrollTop(options: ScrollOptionsType) {
 		let isWindow = false
 		let el = options.el
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
 		let number = options.number || 0
 		let time = options.time || 0
 		if (!this.isElement(el) || el == document.body || el == document.documentElement || el == window) {
 			isWindow = true
 		}
-		return new Promise((resolve, reject) => {
+		return new Promise<void>(resolve => {
 			if (time <= 0) {
 				if (isWindow) {
 					document.documentElement.scrollTop = document.body.scrollTop = number
 				} else {
-					el.scrollTop = number
+					;(<HTMLElement>el).scrollTop = number
 				}
 				resolve()
 			} else {
 				let spacingTime = 10 // 设置循环的间隔时间  值越小消耗性能越高
 				let spacingIndex = numberUtil.divide(time, spacingTime) // 计算循环的次数
 				// 获取当前滚动条位置
-				let nowTop = this.getScrollTop(el)
+				let nowTop = this.getScrollTop(el!)
 				let everTop = numberUtil.divide(numberUtil.subtract(number, nowTop), spacingIndex) // 计算每次滑动的距离
 				let scrollTimer = setInterval(() => {
 					if (spacingIndex > 0) {
@@ -388,7 +402,7 @@ export default {
 						if (isWindow) {
 							document.documentElement.scrollTop = document.body.scrollTop = nowTop = numberUtil.add(nowTop, everTop)
 						} else {
-							el.scrollTop = nowTop = numberUtil.add(nowTop, everTop)
+							;(<HTMLElement>el).scrollTop = nowTop = numberUtil.add(nowTop, everTop)
 						}
 					} else {
 						clearInterval(scrollTimer) // 清除计时器
@@ -403,14 +417,14 @@ export default {
 	 * 获取滚动条在Y轴上滚动的距离
 	 * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
 	 */
-	getScrollTop(el) {
+	getScrollTop(el: HTMLElement | string | Window) {
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
 		let scrollTop = 0
 		//如果是元素
 		if (this.isElement(el) && el != document.body && el != document.documentElement && el != window) {
-			scrollTop = el.scrollTop
+			scrollTop = (<HTMLElement>el).scrollTop
 		} else {
 			if (document.documentElement.scrollTop == 0 || document.body.scrollTop == 0) {
 				scrollTop = document.documentElement.scrollTop || document.body.scrollTop
@@ -425,14 +439,14 @@ export default {
 	 * 获取滚动条在X轴上滚动的距离
 	 * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
 	 */
-	getScrollLeft(el) {
+	getScrollLeft(el: HTMLElement | string | Window) {
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
 		let scrollLeft = 0
 		//如果是元素
 		if (this.isElement(el) && el != document.body && el != document.documentElement && el != window) {
-			scrollLeft = el.scrollLeft
+			scrollLeft = (<HTMLElement>el).scrollLeft
 		} else {
 			if (document.documentElement.scrollLeft == 0 || document.body.scrollLeft == 0) {
 				scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
@@ -447,30 +461,30 @@ export default {
 	 * 设置滚动条在X轴上的距离
 	 * @param {Object} options {el,number,time} el支持css选择器字符串 未指定则为窗口滚动
 	 */
-	setScrollLeft(options) {
+	setScrollLeft(options: ScrollOptionsType) {
 		let isWindow = false
 		let el = options.el
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
 		let number = options.number || 0
 		let time = options.time || 0
 		if (!this.isElement(el) || el == document.body || el == document.documentElement || el == window) {
 			isWindow = true
 		}
-		return new Promise((resolve, reject) => {
+		return new Promise<void>(resolve => {
 			if (time <= 0) {
 				if (isWindow) {
 					document.documentElement.scrollLeft = document.body.scrollLeft = number
 				} else {
-					el.scrollLeft = number
+					;(<HTMLElement>el).scrollLeft = number
 				}
 				resolve()
 			} else {
 				let spacingTime = 10 // 设置循环的间隔时间  值越小消耗性能越高
 				let spacingIndex = numberUtil.divide(time, spacingTime) // 计算循环的次数
 				// 获取当前滚动条位置
-				let nowLeft = this.getScrollLeft(el)
+				let nowLeft = this.getScrollLeft(<Window | HTMLElement>el)
 				let everLeft = numberUtil.divide(numberUtil.subtract(number, nowLeft), spacingIndex) // 计算每次滑动的距离
 				let scrollTimer = setInterval(() => {
 					if (spacingIndex > 0) {
@@ -478,7 +492,7 @@ export default {
 						if (isWindow) {
 							document.documentElement.scrollLeft = document.body.scrollLeft = nowLeft = numberUtil.add(nowLeft, everLeft)
 						} else {
-							el.scrollLeft = nowLeft = numberUtil.add(nowLeft, everLeft)
+							;(<HTMLElement>el).scrollLeft = nowLeft = numberUtil.add(nowLeft, everLeft)
 						}
 					} else {
 						clearInterval(scrollTimer) // 清除计时器
@@ -494,7 +508,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} cssName 样式名称
 	 */
-	getCssStyle(el, cssName) {
+	getCssStyle(el: HTMLElement, cssName: string) {
 		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
@@ -505,11 +519,11 @@ export default {
 		let cssText = ''
 		//兼容IE9-IE11、chrome、firefox、safari、opera；不兼容IE7-IE8
 		if (document.defaultView && document.defaultView.getComputedStyle) {
-			cssText = document.defaultView.getComputedStyle(el)[cssName]
+			cssText = (<any>document.defaultView.getComputedStyle(el))[cssName]
 		}
 		//兼容IE7-IE11；不兼容chrome、firefox、safari、opera
 		else {
-			cssText = el.currentStyle[cssName]
+			cssText = (<any>el).currentStyle[cssName]
 		}
 		return cssText
 	},
@@ -518,7 +532,7 @@ export default {
 	 * 判断字符串属于哪种选择器
 	 * @param {Object} selector
 	 */
-	getCssSelector(selector) {
+	getCssSelector(selector: string) {
 		if (!selector || typeof selector != 'string') {
 			throw new TypeError('The argument must be a selector string')
 		}
@@ -539,7 +553,7 @@ export default {
 		//属性选择器，以[]包裹的字符串
 		if (/^\[(.+)\]$/.test(selector)) {
 			let type = 'attribute'
-			let value = ''
+			let value: any = ''
 			let attribute = stringUtil.trim(selector, true).substring(1, stringUtil.trim(selector, true).length - 1)
 			let arry = attribute.split('=')
 			if (arry.length == 1) {
@@ -568,14 +582,14 @@ export default {
 	 * 获取元素距离可视窗口的位置
 	 * @param {Object} el 支持css选择器字符串 未指定则为document.body
 	 */
-	getElementBounding(el) {
+	getElementBounding(el: HTMLElement | string): PlacementType {
 		if (typeof el == 'string' && el) {
-			el = document.body.querySelector(el)
+			el = <HTMLElement>document.body.querySelector(el)
 		}
 		if (!this.isElement(el)) {
 			el = document.body
 		}
-		let point = el.getBoundingClientRect()
+		let point = (<HTMLElement>el).getBoundingClientRect()
 		let top = point.top //元素顶部距离可视窗口上边的距离
 
 		let bottom = numberUtil.subtract(document.documentElement.clientHeight || window.innerHeight, point.bottom) //元素底部距离可视窗口底部的距离
@@ -593,7 +607,7 @@ export default {
 	 * 判断是否是元素
 	 * @param {Object} el
 	 */
-	isElement(el) {
+	isElement(el: any) {
 		return el && el instanceof Node && el.nodeType === 1
 	},
 
@@ -601,7 +615,7 @@ export default {
 	 * 字符串转dom
 	 * @param {Object} str
 	 */
-	string2dom(str, parentTag = 'div') {
+	string2dom(str: string, parentTag: string = 'div') {
 		if (!str || typeof str != 'string') {
 			throw new TypeError('The argument must be an HTML string')
 		}

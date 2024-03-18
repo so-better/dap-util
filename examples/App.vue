@@ -4,11 +4,12 @@
 		<input type="file" @change="change" />
 	</div>
 </template>
-<script>
-import Dap from '../src'
+<script lang="ts">
+import { number } from '../src'
+
 export default {
 	mounted() {
-		console.log(Dap.string.replace('这是一个美好且充满无限可能的世界', 4, 13, '糟糕'))
+		console.log(number.divide(3, 2))
 	},
 	methods: {
 		change(e) {}

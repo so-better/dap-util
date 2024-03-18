@@ -1,5 +1,6 @@
 import elementUtil from './element'
-const dataName = '_dap-datas'
+const dataName: string = '_dap-datas'
+
 /**
  * 元素数据挂载方法
  */
@@ -9,18 +10,18 @@ export default {
 	 * @param {Object} el
 	 * @param {Object} key
 	 */
-	remove(el, key) {
+	remove(el: HTMLElement | Window | Document, key: string) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
 		}
-		let data = el[dataName] || {}
+		let data = (<any>el)[dataName] || {}
 		//未指定参数,删除全部
 		if (key === undefined || key === null || key === '') {
-			el[dataName] = {}
+			;(<any>el)[dataName] = {}
 		} else {
 			delete data[key]
-			el[dataName] = data
+			;(<any>el)[dataName] = data
 		}
 	},
 
@@ -29,7 +30,7 @@ export default {
 	 * @param {Object} el
 	 * @param {Object} key
 	 */
-	has(el, key) {
+	has(el: HTMLElement | Window | Document, key: string) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
@@ -37,7 +38,7 @@ export default {
 		if (key === undefined || key === null || key === '') {
 			throw new TypeError('The second parameter must be a unique key')
 		}
-		let data = el[dataName] || {}
+		let data = (<any>el)[dataName] || {}
 		return data.hasOwnProperty(key)
 	},
 
@@ -46,12 +47,12 @@ export default {
 	 * @param {Object} el
 	 * @param {Object} key
 	 */
-	get(el, key) {
+	get(el: HTMLElement | Window | Document, key: string) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
 		}
-		let data = el[dataName] || {}
+		let data = (<any>el)[dataName] || {}
 		//未指定参数,返回全部
 		if (key === undefined || key === null || key === '') {
 			return data
@@ -66,7 +67,7 @@ export default {
 	 * @param {Object} key
 	 * @param {Object} value
 	 */
-	set(el, key, value) {
+	set(el: HTMLElement | Window | Document, key: string, value: any) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
@@ -74,8 +75,8 @@ export default {
 		if (key === undefined || key === null || key === '') {
 			throw new TypeError('The second parameter must be a unique key')
 		}
-		let data = el[dataName] || {}
+		let data = (<any>el)[dataName] || {}
 		data[key] = value
-		el[dataName] = data
+		;(<any>el)[dataName] = data
 	}
 }

@@ -1,5 +1,32 @@
 import numberUtil from './number'
 import commonUtil from './common'
+
+type EventParamsType = {
+	text: string
+	pitch: number
+	rate: number
+	volume: number
+}
+
+type SpeechParamsType = {
+	//话语的音调
+	pitch?: number
+	//说话的速度
+	rate?: number
+	//说话的音量：0-1
+	volume?: number
+	//播放开始事件
+	start?: (e: Event, options: EventParamsType) => void
+	//播放结束事件
+	end?: (e: Event, options: EventParamsType) => void
+	//播放暂停事件
+	pause?: (e: Event, options: EventParamsType) => void
+	//播放恢复事件
+	resume?: (e: Event, options: EventParamsType) => void
+	//播放出错事件
+	error?: (e: Event, options: EventParamsType) => void
+}
+
 /**
  * 语音合成方法
  */
@@ -8,11 +35,11 @@ export default {
 	 * 将文字加入语音播报队列
 	 * @param {Object} text
 	 */
-	start(text, params) {
+	start(text: string, params: SpeechParamsType) {
 		if (!window.SpeechSynthesisUtterance || !window.speechSynthesis) {
 			throw new Error('The current browser does not support this syntax')
 		}
-		let defaultParams = {
+		let defaultParams: SpeechParamsType = {
 			//话语的音调(0-2，值越大越尖锐,越低越低沉)
 			pitch: 0.8,
 			//说话的速度(0-10，值越大语速越快,越小语速越慢)
@@ -59,67 +86,67 @@ export default {
 		}
 		const speech = new SpeechSynthesisUtterance()
 		speech.text = text
-		speech.pitch = defaultParams.pitch
-		speech.rate = defaultParams.rate
-		speech.volume = defaultParams.volume
+		speech.pitch = defaultParams.pitch!
+		speech.rate = defaultParams.rate!
+		speech.volume = defaultParams.volume!
 		speech.lang = 'zh-CN'
 		//播放开始后调用
 		speech.onstart = event => {
-			defaultParams.start.apply(speech, [
+			defaultParams.start!.apply(speech, [
 				event,
 				{
 					text: text,
-					pitch: defaultParams.pitch,
-					rate: defaultParams.rate,
-					volume: defaultParams.volume
+					pitch: defaultParams.pitch!,
+					rate: defaultParams.rate!,
+					volume: defaultParams.volume!
 				}
 			])
 		}
 		//播放结束后调用
 		speech.onend = event => {
-			defaultParams.end.apply(speech, [
+			defaultParams.end!.apply(speech, [
 				event,
 				{
 					text: text,
-					pitch: defaultParams.pitch,
-					rate: defaultParams.rate,
-					volume: defaultParams.volume
+					pitch: defaultParams.pitch!,
+					rate: defaultParams.rate!,
+					volume: defaultParams.volume!
 				}
 			])
 		}
 		//播放暂停后调用
 		speech.onpause = event => {
-			defaultParams.pause.apply(speech, [
+			defaultParams.pause!.apply(speech, [
 				event,
 				{
 					text: text,
-					pitch: defaultParams.pitch,
-					rate: defaultParams.rate,
-					volume: defaultParams.volume
+					pitch: defaultParams.pitch!,
+					rate: defaultParams.rate!,
+					volume: defaultParams.volume!
 				}
 			])
 		}
 		//播放恢复后调用
 		speech.onresume = event => {
-			defaultParams.resume.apply(speech, [
+			defaultParams.resume!.apply(speech, [
 				event,
 				{
 					text: text,
-					pitch: defaultParams.pitch,
-					rate: defaultParams.rate,
-					volume: defaultParams.volume
+					pitch: defaultParams.pitch!,
+					rate: defaultParams.rate!,
+					volume: defaultParams.volume!
 				}
 			])
 		}
 		//播放出错后调用
 		speech.onerror = event => {
-			defaultParams.error.apply(speech, [
+			defaultParams.error!.apply(speech, [
 				event,
 				{
 					text: text,
-					pitch: defaultParams.pitch,
-					rate: defaultParams.rate,
-					volume: defaultParams.volume
+					pitch: defaultParams.pitch!,
+					rate: defaultParams.rate!,
+					volume: defaultParams.volume!
 				}
 			])
 		}

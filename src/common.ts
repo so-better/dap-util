@@ -7,7 +7,7 @@ export default {
 	 * @param {Object} text 要判断的字符串
 	 * @param {Object} param 判断的类型字符串
 	 */
-	matchingText(text, param) {
+	matchingText(text: string, param: string) {
 		if (!text || typeof text != 'string') {
 			throw new TypeError('The first argument must be a string')
 		}
@@ -106,7 +106,7 @@ export default {
 	 * 根据参数名获取地址栏参数值
 	 * @param {Object} name
 	 */
-	getUrlParams(name) {
+	getUrlParams(name: string) {
 		if (!name || typeof name != 'string') {
 			throw new TypeError('The argument must be a string')
 		}
@@ -129,7 +129,7 @@ export default {
 	 * 判断是否空对象
 	 * @param {Object} obj
 	 */
-	isEmptyObject(obj) {
+	isEmptyObject(obj: any) {
 		if (this.isObject(obj)) {
 			if (Object.keys(obj).length == 0) {
 				return true
@@ -144,7 +144,7 @@ export default {
 	 * @param {Object} a
 	 * @param {Object} b
 	 */
-	equal(a, b) {
+	equal(a: any, b: any) {
 		if (typeof a !== typeof b) {
 			return false
 		}
@@ -174,7 +174,7 @@ export default {
 	 * 是否对象
 	 * @param {Object} val
 	 */
-	isObject(val) {
+	isObject(val: any) {
 		if (typeof val === 'object' && val) {
 			return true
 		}
@@ -185,7 +185,7 @@ export default {
 	 * 文本复制
 	 * @param {Object} text
 	 */
-	copyText(text) {
+	copyText(text: string) {
 		if (!text || typeof text != 'string') {
 			throw new TypeError('No text to copy is defined')
 		}
@@ -199,14 +199,14 @@ export default {
 	 * 深度克隆
 	 * @param {Object} data
 	 */
-	clone(data) {
+	clone(data: any) {
 		if (this.isObject(data)) {
 			if (Array.isArray(data)) {
-				return data.map(item => {
+				return data.map((item: any): any => {
 					return this.clone(item)
 				})
 			}
-			let newData = {}
+			let newData: any = {}
 			for (let key in data) {
 				newData[key] = this.clone(data[key])
 			}

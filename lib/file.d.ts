@@ -1,0 +1,32 @@
+type CompressOptionsType = {
+    width?: number;
+    quality?: number;
+    mimeType?: string;
+    maxSize?: number;
+    minSize?: number;
+};
+declare const _default: {
+    /**
+     * 根据文件获取可预览的图片路径
+     * @param {Object} file
+     */
+    getImageUrl(file: File): string;
+    /**
+     * 将JS的file对象转为BASE64位字符串，通过then方法回调,参数为base64字符串
+     * @param {Object} file
+     */
+    dataFileToBase64(file: File): Promise<unknown>;
+    /**
+     * 将base64位格式文件转换为file对象
+     * @param {Object} base64String base64位格式字符串
+     * @param {Object} fileName 转换后的文件名字，包含后缀
+     */
+    dataBase64toFile(base64String: string, fileName: string): File;
+    /**
+     * 图片压缩方法
+     * @param {*} file 需要压缩的图片File文件
+     * @param {*} opts 压缩参数
+     */
+    compressImage(file: File, opts: CompressOptionsType): Promise<unknown>;
+};
+export default _default;

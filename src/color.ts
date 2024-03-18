@@ -7,7 +7,7 @@ export default {
 	 * rgb转hsv值
 	 * @param {Object} rgb rgb值，数组
 	 */
-	rgb2hsv(rgb) {
+	rgb2hsv(rgb: number[]) {
 		if (!Array.isArray(rgb) || rgb.length != 3) {
 			throw new TypeError('Invalid argument')
 		}
@@ -46,7 +46,7 @@ export default {
 	 * hsv格式值转rgb值
 	 * @param {Object} hsv hsv值，数组
 	 */
-	hsv2rgb(hsv) {
+	hsv2rgb(hsv: number[]) {
 		if (!Array.isArray(hsv) || hsv.length != 3) {
 			throw new TypeError('Invalid argument')
 		}
@@ -60,7 +60,7 @@ export default {
 		let r = 0
 		let g = 0
 		let b = 0
-		let i = parseInt((h / 60) % 6)
+		let i = parseInt(((h / 60) % 6) + '')
 		let f = h / 60 - i
 		let p = v * (1 - s)
 		let q = v * (1 - f * s)
@@ -99,9 +99,9 @@ export default {
 			default:
 				break
 		}
-		r = parseInt(r * 255)
-		g = parseInt(g * 255)
-		b = parseInt(b * 255)
+		r = parseInt(r * 255 + '')
+		g = parseInt(g * 255 + '')
+		b = parseInt(b * 255 + '')
 		return [r, g, b]
 	},
 
@@ -109,7 +109,7 @@ export default {
 	 * rgb值转十六进制
 	 * @param {Array} rgb rgb值，数组
 	 */
-	rgb2hex(rgb) {
+	rgb2hex(rgb: number[]) {
 		if (!Array.isArray(rgb) || rgb.length != 3) {
 			throw new TypeError('Invalid argument')
 		}
@@ -124,7 +124,7 @@ export default {
 	 * 十六进制颜色转rgb
 	 * @param {String} hex 十六进制颜色值
 	 */
-	hex2rgb(hex) {
+	hex2rgb(hex: string) {
 		if (!hex || typeof hex != 'string') {
 			throw new TypeError('The argument must be a string')
 		}
