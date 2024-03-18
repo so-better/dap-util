@@ -7,7 +7,7 @@ declare const _default: {
      * @param {Object} el
      * @param {Object} key
      */
-    remove(el: HTMLElement | Window | Document, key: string): void;
+    remove(el: HTMLElement | Window | Document, key?: string | null): void;
     /**
      * 判断是否含有指定数据
      * @param {Object} el
@@ -19,13 +19,13 @@ declare const _default: {
      * @param {Object} el
      * @param {Object} key
      */
-    get(el: HTMLElement | Window | Document, key: string): any;
+    get(el: HTMLElement | Window | Document, key?: string | null): any;
     /**
      * 设置元素指定数据
      * @param {Object} el
      * @param {Object} key
      * @param {Object} value
      */
-    set(el: HTMLElement | Window | Document, key: string, value: any): void;
+    set(el: HTMLElement | Window | Document, key: string, value?: any): void;
 };
 export default _default;

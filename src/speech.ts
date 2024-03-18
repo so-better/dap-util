@@ -35,7 +35,7 @@ export default {
 	 * 将文字加入语音播报队列
 	 * @param {Object} text
 	 */
-	start(text: string, params: SpeechParamsType) {
+	start(text: string, params?: SpeechParamsType) {
 		if (!window.SpeechSynthesisUtterance || !window.speechSynthesis) {
 			throw new Error('The current browser does not support this syntax')
 		}
@@ -60,29 +60,29 @@ export default {
 		if (!commonUtil.isObject(params)) {
 			params = {}
 		}
-		if (numberUtil.isNumber(params.pitch)) {
-			defaultParams.pitch = params.pitch
+		if (numberUtil.isNumber(params!.pitch)) {
+			defaultParams.pitch = params!.pitch
 		}
-		if (numberUtil.isNumber(params.rate)) {
-			defaultParams.rate = params.rate
+		if (numberUtil.isNumber(params!.rate)) {
+			defaultParams.rate = params!.rate
 		}
-		if (numberUtil.isNumber(params.volume)) {
-			defaultParams.volume = params.volume
+		if (numberUtil.isNumber(params!.volume)) {
+			defaultParams.volume = params!.volume
 		}
-		if (typeof params.start == 'function') {
-			defaultParams.start = params.start
+		if (typeof params!.start == 'function') {
+			defaultParams.start = params!.start
 		}
-		if (typeof params.end == 'function') {
-			defaultParams.end = params.end
+		if (typeof params!.end == 'function') {
+			defaultParams.end = params!.end
 		}
-		if (typeof params.pause == 'function') {
-			defaultParams.pause = params.pause
+		if (typeof params!.pause == 'function') {
+			defaultParams.pause = params!.pause
 		}
-		if (typeof params.resume == 'function') {
-			defaultParams.resume = params.resume
+		if (typeof params!.resume == 'function') {
+			defaultParams.resume = params!.resume
 		}
-		if (typeof params.error == 'function') {
-			defaultParams.error = params.error
+		if (typeof params!.error == 'function') {
+			defaultParams.error = params!.error
 		}
 		const speech = new SpeechSynthesisUtterance()
 		speech.text = text

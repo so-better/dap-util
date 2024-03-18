@@ -84,7 +84,7 @@ export default {
 	 * @param {Object} str 原始字符串
 	 * @param {Object} global 为true时去除所有空格，否则只去除两边空格
 	 */
-	trim(str: string, global: boolean = false) {
+	trim(str: string, global?: boolean) {
 		if (typeof str != 'string') {
 			throw new TypeError('The first argument must be a string')
 		}

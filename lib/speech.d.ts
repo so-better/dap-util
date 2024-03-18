@@ -22,7 +22,7 @@ declare const _default: {
      * 将文字加入语音播报队列
      * @param {Object} text
      */
-    start(text: string, params: SpeechParamsType): void;
+    start(text: string, params?: SpeechParamsType): void;
     /**
      * 停止播报，停止所有播报队列里面的语音
      */

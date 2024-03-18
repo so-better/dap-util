@@ -21,9 +21,8 @@ export default {
 	isNumber(num: any) {
 		if (typeof num == 'number' && !isNaN(num)) {
 			return true
-		} else {
-			return false
 		}
+		return false
 	},
 
 	/**

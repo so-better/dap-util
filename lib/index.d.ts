@@ -18,14 +18,14 @@ declare const obj: {
         divide(...values: number[]): number;
     };
     data: {
-        remove(el: HTMLElement | Window | Document, key: string): void;
+        remove(el: HTMLElement | Window | Document, key?: string | null | undefined): void;
         has(el: HTMLElement | Window | Document, key: string): any;
-        get(el: HTMLElement | Window | Document, key: string): any;
-        set(el: HTMLElement | Window | Document, key: string, value: any): void;
+        get(el: HTMLElement | Window | Document, key?: string | null | undefined): any;
+        set(el: HTMLElement | Window | Document, key: string, value?: any): void;
     };
     element: {
         isWindow(data: any): any;
-        getElementPoint(el: HTMLElement, root: HTMLElement): {
+        getElementPoint(el: HTMLElement, root?: HTMLElement | undefined): {
             left: number;
             top: number;
             right: number;
@@ -33,25 +33,25 @@ declare const obj: {
         };
         isContains(parentNode: HTMLElement, childNode: HTMLElement): boolean | undefined;
         isParentNode(parentNode: HTMLElement, childNode: HTMLElement): boolean;
-        children(el: HTMLElement, selector: string): Element[];
-        siblings(el: HTMLElement, selector: string): Element[];
+        children(el: HTMLElement, selector?: string | undefined): Element[];
+        siblings(el: HTMLElement, selector?: string | undefined): Element[];
         rem2px(num: number): number;
         px2rem(num: number): number;
-        width(el: string | HTMLElement): number;
-        height(el: string | HTMLElement): number;
+        width(el?: string | HTMLElement | undefined): number;
+        height(el?: string | HTMLElement | undefined): number;
         removeClass(el: HTMLElement, className: string): void;
         addClass(el: HTMLElement, className: string): void;
         hasClass(el: HTMLElement, className: string): boolean;
-        scrollTopBottomTrigger(el: string | HTMLElement | Window, callback: (options: any) => void): void;
-        getScrollWidth(el: string | HTMLElement): number;
-        getScrollHeight(el: string | HTMLElement): number;
+        scrollTopBottomTrigger(el?: string | HTMLElement | Window | undefined, callback?: ((options: any) => void) | undefined): void;
+        getScrollWidth(el?: string | HTMLElement | undefined): number;
+        getScrollHeight(el?: string | HTMLElement | undefined): number;
         setScrollTop(options: {
             el?: string | HTMLElement | Window | undefined;
             time?: number | undefined;
             number?: number | undefined;
         }): Promise<void>;
-        getScrollTop(el: string | HTMLElement | Window): number;
-        getScrollLeft(el: string | HTMLElement | Window): number;
+        getScrollTop(el?: string | HTMLElement | Window | undefined): number;
+        getScrollLeft(el?: string | HTMLElement | Window | undefined): number;
         setScrollLeft(options: {
             el?: string | HTMLElement | Window | undefined;
             time?: number | undefined;
@@ -62,18 +62,18 @@ declare const obj: {
             type: string;
             value: any;
         };
-        getElementBounding(el: string | HTMLElement): {
+        getElementBounding(el?: string | HTMLElement | undefined): {
             left: number;
             top: number;
             right: number;
             bottom: number;
         };
         isElement(el: any): any;
-        string2dom(str: string, parentTag?: string): Element | Element[];
+        string2dom(str: string, parentTag?: string | undefined): Element | Element[];
     };
     event: {
-        on(el: HTMLElement, eventName: string, fn: (e: Event) => void, options: AddEventListenerOptions | undefined): void;
-        off(el: HTMLElement, eventName: string): void;
+        on(el: HTMLElement, eventName: string, fn: (e: Event) => void, options?: AddEventListenerOptions | undefined): void;
+        off(el: HTMLElement, eventName?: string | undefined): void;
         get(el: HTMLElement): any;
     };
     common: {
@@ -107,7 +107,7 @@ declare const obj: {
         insert(original: string, str: string, index: number): string;
         delete(original: string, index: number, num: number): string;
         replace(original: string, start: number, end: number, str: string): string;
-        trim(str: string, global?: boolean): string;
+        trim(str: string, global?: boolean | undefined): string;
     };
     platform: {
         language(): any;
@@ -148,7 +148,7 @@ declare const obj: {
         };
     };
     speech: {
-        start(text: string, params: {
+        start(text: string, params?: {
             pitch?: number | undefined;
             rate?: number | undefined;
             volume?: number | undefined;
@@ -182,7 +182,7 @@ declare const obj: {
                 rate: number;
                 volume: number;
             }) => void) | undefined;
-        }): void;
+        } | undefined): void;
         stop(): void;
         pause(): void;
         resume(): void;

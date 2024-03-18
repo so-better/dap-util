@@ -23,7 +23,7 @@ declare const _default: {
      * @param {Object} el 元素
      * @param {Object} root 定位父元素或者祖先元素，未指定则为document.body
      */
-    getElementPoint(el: HTMLElement, root: HTMLElement): PlacementType;
+    getElementPoint(el: HTMLElement, root?: HTMLElement): PlacementType;
     /**
      * 判断某个元素是否包含指定元素，包含相等关系和父子关系
      * @param {Object} parentNode 父元素或祖先元素
@@ -41,13 +41,13 @@ declare const _default: {
      * @param {Object} el 元素
      * @param {Object} selector 支持多选择器，等同于querySelectorAll的参数
      */
-    children(el: HTMLElement, selector: string): Element[];
+    children(el: HTMLElement, selector?: string): Element[];
     /**
      * 查找某个元素下指定选择器的兄弟元素
      * @param {Object} el 元素
      * @param {Object} selector 取值等同于queryselectorAll的参数，支持多选择器
      */
-    siblings(el: HTMLElement, selector: string): Element[];
+    siblings(el: HTMLElement, selector?: string): Element[];
     /**
      * rem与px单位转换
      * @param {Object} num rem数值
@@ -62,12 +62,12 @@ declare const _default: {
      * 获取元素的内容宽度，内容宽度不包括border和padding
      * @param {Object} el 支持css选择器字符串，未指定则表示document.body
      */
-    width(el: HTMLElement | string): number;
+    width(el?: HTMLElement | string): number;
     /**
      * 获取元素的内容高度，内容高度不包括border和padding
      * @param {Object} el 支持css选择器字符串 未指定则表示document.body
      */
-    height(el: HTMLElement | string): number;
+    height(el?: HTMLElement | string): number;
     /**
      * 移除class
      * @param {Object} el 元素
@@ -91,17 +91,17 @@ declare const _default: {
      * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
      * @param {Object} callback 回调函数
      */
-    scrollTopBottomTrigger(el: HTMLElement | string | Window, callback: (options: any) => void): void;
+    scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: ((options: any) => void) | undefined): void;
     /**
      * 获取文档或元素的总宽度
      * @param {Object} el 支持css选择器字符串 未指定则表示整个页面文档
      */
-    getScrollWidth(el: HTMLElement | string): number;
+    getScrollWidth(el?: HTMLElement | string): number;
     /**
      * 获取文档或者元素的总高度
      * @param {Object} el 支持css选择器字符串 未指定则表示整个页面文档
      */
-    getScrollHeight(el: HTMLElement | string): number;
+    getScrollHeight(el?: HTMLElement | string): number;
     /**
      * 设置滚动条在Y轴上的距离
      * @param {Object} options {el,number,time} el支持css选择器字符串 未指定则为窗口滚动
@@ -111,12 +111,12 @@ declare const _default: {
      * 获取滚动条在Y轴上滚动的距离
      * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
      */
-    getScrollTop(el: HTMLElement | string | Window): number;
+    getScrollTop(el?: HTMLElement | string | Window): number;
     /**
      * 获取滚动条在X轴上滚动的距离
      * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
      */
-    getScrollLeft(el: HTMLElement | string | Window): number;
+    getScrollLeft(el?: HTMLElement | string | Window): number;
     /**
      * 设置滚动条在X轴上的距离
      * @param {Object} options {el,number,time} el支持css选择器字符串 未指定则为窗口滚动
@@ -140,7 +140,7 @@ declare const _default: {
      * 获取元素距离可视窗口的位置
      * @param {Object} el 支持css选择器字符串 未指定则为document.body
      */
-    getElementBounding(el: HTMLElement | string): PlacementType;
+    getElementBounding(el?: HTMLElement | string): PlacementType;
     /**
      * 判断是否是元素
      * @param {Object} el

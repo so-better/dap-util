@@ -10,7 +10,7 @@ export default {
 	 * @param {Object} el
 	 * @param {Object} key
 	 */
-	remove(el: HTMLElement | Window | Document, key: string) {
+	remove(el: HTMLElement | Window | Document, key?: string | null) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
@@ -47,7 +47,7 @@ export default {
 	 * @param {Object} el
 	 * @param {Object} key
 	 */
-	get(el: HTMLElement | Window | Document, key: string) {
+	get(el: HTMLElement | Window | Document, key?: string | null) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
@@ -67,7 +67,7 @@ export default {
 	 * @param {Object} key
 	 * @param {Object} value
 	 */
-	set(el: HTMLElement | Window | Document, key: string, value: any) {
+	set(el: HTMLElement | Window | Document, key: string, value?: any) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')

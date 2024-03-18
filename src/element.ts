@@ -30,7 +30,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} root 定位父元素或者祖先元素，未指定则为document.body
 	 */
-	getElementPoint(el: HTMLElement, root: HTMLElement): PlacementType {
+	getElementPoint(el: HTMLElement, root?: HTMLElement): PlacementType {
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
 		}
@@ -38,7 +38,7 @@ export default {
 			root = document.body
 		}
 
-		if (!this.isContains(root, el)) {
+		if (!this.isContains(<HTMLElement>root, el)) {
 			throw new Error('The second argument and the first argument have no hierarchical relationship')
 		}
 
@@ -46,13 +46,13 @@ export default {
 		let offsetTop = 0
 		let offsetLeft = 0
 		//判断是否有定位父容器，如果存在则累加其边距
-		while (this.isElement(el) && this.isContains(root, el) && root !== el) {
+		while (this.isElement(el) && this.isContains(<HTMLElement>root, el) && root !== el) {
 			offsetTop += el.offsetTop //叠加父容器的上边距
 			offsetLeft += el.offsetLeft //叠加父容器的左边距
 			el = <HTMLElement>el.offsetParent
 		}
-		let offsetRight = root.offsetWidth - offsetLeft - obj.offsetWidth
-		let offsetBottom = root.offsetHeight - offsetTop - obj.offsetHeight
+		let offsetRight = (<HTMLElement>root).offsetWidth - offsetLeft - obj.offsetWidth
+		let offsetBottom = (<HTMLElement>root).offsetHeight - offsetTop - obj.offsetHeight
 		return {
 			top: offsetTop,
 			left: offsetLeft,
@@ -111,7 +111,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} selector 支持多选择器，等同于querySelectorAll的参数
 	 */
-	children(el: HTMLElement, selector: string) {
+	children(el: HTMLElement, selector?: string) {
 		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
@@ -130,7 +130,7 @@ export default {
 	 * @param {Object} el 元素
 	 * @param {Object} selector 取值等同于queryselectorAll的参数，支持多选择器
 	 */
-	siblings(el: HTMLElement, selector: string) {
+	siblings(el: HTMLElement, selector?: string) {
 		//不是元素
 		if (!this.isElement(el)) {
 			throw new TypeError('The first argument must be an element')
@@ -175,7 +175,7 @@ export default {
 	 * 获取元素的内容宽度，内容宽度不包括border和padding
 	 * @param {Object} el 支持css选择器字符串，未指定则表示document.body
 	 */
-	width(el: HTMLElement | string) {
+	width(el?: HTMLElement | string) {
 		if (typeof el == 'string' && el) {
 			el = <HTMLElement>document.body.querySelector(el)
 		}
@@ -192,7 +192,7 @@ export default {
 	 * 获取元素的内容高度，内容高度不包括border和padding
 	 * @param {Object} el 支持css选择器字符串 未指定则表示document.body
 	 */
-	height(el: HTMLElement | string) {
+	height(el?: HTMLElement | string) {
 		if (typeof el == 'string' && el) {
 			el = <HTMLElement>document.body.querySelector(el)
 		}
@@ -270,7 +270,7 @@ export default {
 	 * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
 	 * @param {Object} callback 回调函数
 	 */
-	scrollTopBottomTrigger(el: HTMLElement | string | Window, callback: (options: any) => void) {
+	scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: (options: any) => void) {
 		if (typeof el == 'string' && el) {
 			el = <HTMLElement>document.body.querySelector(el)
 		}
@@ -329,7 +329,7 @@ export default {
 	 * 获取文档或元素的总宽度
 	 * @param {Object} el 支持css选择器字符串 未指定则表示整个页面文档
 	 */
-	getScrollWidth(el: HTMLElement | string) {
+	getScrollWidth(el?: HTMLElement | string) {
 		if (typeof el == 'string' && el) {
 			el = <HTMLElement>document.body.querySelector(el)
 		}
@@ -350,7 +350,7 @@ export default {
 	 * 获取文档或者元素的总高度
 	 * @param {Object} el 支持css选择器字符串 未指定则表示整个页面文档
 	 */
-	getScrollHeight(el: HTMLElement | string) {
+	getScrollHeight(el?: HTMLElement | string) {
 		if (typeof el == 'string' && el) {
 			el = <HTMLElement>document.body.querySelector(el)
 		}
@@ -417,7 +417,7 @@ export default {
 	 * 获取滚动条在Y轴上滚动的距离
 	 * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
 	 */
-	getScrollTop(el: HTMLElement | string | Window) {
+	getScrollTop(el?: HTMLElement | string | Window) {
 		if (typeof el == 'string' && el) {
 			el = <HTMLElement>document.body.querySelector(el)
 		}
@@ -439,7 +439,7 @@ export default {
 	 * 获取滚动条在X轴上滚动的距离
 	 * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
 	 */
-	getScrollLeft(el: HTMLElement | string | Window) {
+	getScrollLeft(el?: HTMLElement | string | Window) {
 		if (typeof el == 'string' && el) {
 			el = <HTMLElement>document.body.querySelector(el)
 		}
@@ -582,7 +582,7 @@ export default {
 	 * 获取元素距离可视窗口的位置
 	 * @param {Object} el 支持css选择器字符串 未指定则为document.body
 	 */
-	getElementBounding(el: HTMLElement | string): PlacementType {
+	getElementBounding(el?: HTMLElement | string): PlacementType {
 		if (typeof el == 'string' && el) {
 			el = <HTMLElement>document.body.querySelector(el)
 		}
@@ -615,11 +615,11 @@ export default {
 	 * 字符串转dom
 	 * @param {Object} str
 	 */
-	string2dom(str: string, parentTag: string = 'div') {
+	string2dom(str: string, parentTag?: string) {
 		if (!str || typeof str != 'string') {
 			throw new TypeError('The argument must be an HTML string')
 		}
-		let parentEle = document.createElement(parentTag)
+		let parentEle = document.createElement(parentTag || 'div')
 		parentEle.innerHTML = str
 		if (parentEle.children.length == 1) {
 			return parentEle.children[0]
