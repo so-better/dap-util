@@ -38,7 +38,7 @@ const updateEvents = (events: any) => {
 }
 
 //给元素添加单个事件
-const bindSingleListener = (el: HTMLElement, eventName: string, guid: any, fn: (e: Event) => void, options?: AddEventListenerOptions) => {
+const bindSingleListener = (el: HTMLElement | Window | Document, eventName: string, guid: any, fn: (e: Event) => void, options?: AddEventListenerOptions) => {
 	//获取该元素上的事件对象events:{click.0:{type:'click',fn:fn}}
 	let events = dataUtil.get(el, 'dap-defined-events') || {}
 	//如果没有设定guid
@@ -66,7 +66,7 @@ const bindSingleListener = (el: HTMLElement, eventName: string, guid: any, fn: (
 }
 
 //移除元素的单个事件
-const unbindSingleListener = (el: HTMLElement, eventName: string, guid: any) => {
+const unbindSingleListener = (el: HTMLElement | Window | Document, eventName: string, guid: any) => {
 	let events = dataUtil.get(el, 'dap-defined-events') || {}
 	let keys = Object.keys(events)
 	let length = keys.length
@@ -98,7 +98,7 @@ export default {
 	 * @param {Object} fn 函数
 	 * @param {Object} options 参数
 	 */
-	on(el: HTMLElement, eventName: string, fn: (e: Event) => void, options?: AddEventListenerOptions) {
+	on(el: HTMLElement | Window | Document, eventName: string, fn: (e: Event) => void, options?: AddEventListenerOptions) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
@@ -128,7 +128,7 @@ export default {
 	 * @param {Object} el 元素节点
 	 * @param {Object} eventName 事件名称
 	 */
-	off(el: HTMLElement, eventName?: string) {
+	off(el: HTMLElement | Window | Document, eventName?: string) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')
@@ -160,7 +160,7 @@ export default {
 	 * 获取绑定的所有事件
 	 * @param {*} el
 	 */
-	get(el: HTMLElement) {
+	get(el: HTMLElement | Window | Document) {
 		//参数el校验
 		if (!(el instanceof Document) && !elementUtil.isElement(el) && !elementUtil.isWindow(el)) {
 			throw new TypeError('The first argument must be an element node or window or document')

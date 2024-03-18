@@ -72,9 +72,9 @@ declare const obj: {
         string2dom(str: string, parentTag?: string | undefined): Element | Element[];
     };
     event: {
-        on(el: HTMLElement, eventName: string, fn: (e: Event) => void, options?: AddEventListenerOptions | undefined): void;
-        off(el: HTMLElement, eventName?: string | undefined): void;
-        get(el: HTMLElement): any;
+        on(el: HTMLElement | Window | Document, eventName: string, fn: (e: Event) => void, options?: AddEventListenerOptions | undefined): void;
+        off(el: HTMLElement | Window | Document, eventName?: string | undefined): void;
+        get(el: HTMLElement | Window | Document): any;
     };
     common: {
         matchingText(text: string, param: string): boolean;
