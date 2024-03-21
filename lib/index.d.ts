@@ -31,7 +31,7 @@ declare const obj: {
             right: number;
             bottom: number;
         };
-        isContains(parentNode: HTMLElement, childNode: HTMLElement): boolean | undefined;
+        isContains(parentNode: HTMLElement, childNode: HTMLElement): boolean;
         isParentNode(parentNode: HTMLElement, childNode: HTMLElement): boolean;
         children(el: HTMLElement, selector?: string | undefined): Element[];
         siblings(el: HTMLElement, selector?: string | undefined): Element[];

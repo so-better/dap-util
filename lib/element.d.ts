@@ -29,7 +29,7 @@ declare const _default: {
      * @param {Object} parentNode 父元素或祖先元素
      * @param {Object} childNode 子元素
      */
-    isContains(parentNode: HTMLElement, childNode: HTMLElement): boolean | undefined;
+    isContains(parentNode: HTMLElement, childNode: HTMLElement): boolean;
     /**
      * 判断某个元素是否是指定元素的父元素
      * @param {Object} parentNode 父元素

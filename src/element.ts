@@ -85,6 +85,8 @@ export default {
 		if (parentNode.compareDocumentPosition) {
 			return !!(parentNode.compareDocumentPosition(childNode) & 16)
 		}
+
+		return false
 	},
 
 	/**
