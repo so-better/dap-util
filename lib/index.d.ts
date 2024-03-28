@@ -93,7 +93,7 @@ declare const obj: {
     };
     file: {
         getImageUrl(file: File): string;
-        dataFileToBase64(file: File): Promise<unknown>;
+        dataFileToBase64(file: File): Promise<string>;
         dataBase64toFile(base64String: string, fileName: string): File;
         compressImage(file: File, opts: {
             width?: number | undefined;
@@ -101,7 +101,13 @@ declare const obj: {
             mimeType?: string | undefined;
             maxSize?: number | undefined;
             minSize?: number | undefined;
-        }): Promise<unknown>;
+        }): Promise<{
+            file?: File | undefined;
+            url?: string | undefined;
+            quality?: number | undefined;
+            width?: number | undefined;
+            height?: number | undefined;
+        }>;
     };
     string: {
         insert(original: string, str: string, index: number): string;

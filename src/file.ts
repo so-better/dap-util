@@ -14,6 +14,14 @@ type CompressOptionsType = {
 	minSize?: number
 }
 
+type CompressResultType = {
+	file?: File
+	url?: string
+	quality?: number
+	width?: number
+	height?: number
+}
+
 export default {
 	/**
 	 * 根据文件获取可预览的图片路径
@@ -31,7 +39,7 @@ export default {
 	 * @param {Object} file
 	 */
 	dataFileToBase64(file: File) {
-		return new Promise((resolve, reject) => {
+		return new Promise<string>((resolve, reject) => {
 			if (!file || !(file instanceof File)) {
 				reject(new TypeError('The argument must be a File object'))
 			}
@@ -39,7 +47,7 @@ export default {
 			reader.readAsDataURL(file) // 读出 base64
 			reader.onloadend = () => {
 				// 图片的 base64 格式, 可以直接当成 img 的 src 属性值
-				let dataURL = reader.result
+				let dataURL = <string>reader.result
 				// 下面逻辑处理
 				resolve(dataURL)
 			}
@@ -108,7 +116,7 @@ export default {
 		}
 
 		//压缩图片的具体实现方法
-		const createFile = (canvas: HTMLCanvasElement, fileName: string, quality: number) => {
+		const createFile = (canvas: HTMLCanvasElement, fileName: string, quality: number): CompressResultType => {
 			//压缩后图片的base64
 			let url = canvas.toDataURL('image/' + options.mimeType, quality)
 			//压缩后图片的file类型文件
@@ -116,10 +124,10 @@ export default {
 			//比最大尺寸大，继续压缩，此时会降低质量
 			if (options.maxSize! > 0 && file.size > options.maxSize! * 1024) {
 				quality = quality <= 0 ? 0 : Number((quality - 0.01).toFixed(2))
-				const res = createFile(canvas, fileName, quality)
-				url = res.url
-				file = res.file
-				quality = res.quality
+				const res: CompressResultType = createFile(canvas, fileName, quality)
+				url = <string>res.url
+				file = <File>res.file
+				quality = <number>res.quality
 			}
 			return {
 				file,
@@ -127,14 +135,14 @@ export default {
 				quality
 			}
 		}
-		return new Promise((resolve, reject) => {
+		return new Promise<CompressResultType>((resolve, reject) => {
 			//创建FileReader对象读取文件
 			let reader = new FileReader()
 			reader.readAsDataURL(file)
 
 			reader.onload = () => {
 				//获取文件的base64字符串
-				let url = reader.result
+				let url = <string>reader.result
 				//创建图片对象
 				let img = new Image()
 				//设置图片链接地址
