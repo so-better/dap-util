@@ -1,9 +1,9 @@
 {
 	"name": "dap-util",
-	"version": "1.5.5",
+	"version": "1.5.7",
 	"private": false,
 	"type": "module",
-	"author": "ling0523",
+	"author": "so-better",
 	"main": "lib/dap-util.umd.js",
 	"module": "lib/dap-util.es.js",
 	"types": "lib/index.d.ts",
@@ -34,6 +34,6 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ling0523/dap-util"
+		"url": "https://github.com/so-better/dap-util"
 	}
 }
