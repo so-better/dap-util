@@ -1,9 +1,9 @@
-type ScrollOptionsType = {
+export type ScrollOptionsType = {
     el?: HTMLElement | string | Window;
     time?: number;
     number?: number;
 };
-type PlacementType = {
+export type PlacementType = {
     left: number;
     top: number;
     right: number;
@@ -148,8 +148,8 @@ declare const _default: {
     isElement(el: any): any;
     /**
      * 字符串转dom
-     * @param {Object} str
+     * @param {Object} html
      */
-    string2dom(str: string, parentTag?: string): Element | Element[];
+    string2dom(html: string): Element | Element[];
 };
 export default _default;

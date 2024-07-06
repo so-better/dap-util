@@ -1,11 +1,11 @@
-type CompressOptionsType = {
+export type CompressOptionsType = {
     width?: number;
     quality?: number;
     mimeType?: string;
     maxSize?: number;
     minSize?: number;
 };
-type CompressResultType = {
+export type CompressResultType = {
     file?: File;
     url?: string;
     quality?: number;

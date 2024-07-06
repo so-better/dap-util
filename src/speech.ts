@@ -1,14 +1,14 @@
 import numberUtil from './number'
 import commonUtil from './common'
 
-type EventParamsType = {
+export type EventParamsType = {
 	text: string
 	pitch: number
 	rate: number
 	volume: number
 }
 
-type SpeechParamsType = {
+export type SpeechParamsType = {
 	//话语的音调
 	pitch?: number
 	//说话的速度

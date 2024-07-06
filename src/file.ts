@@ -1,7 +1,7 @@
 import commonUtil from './common'
 import numberUtil from './number'
 
-type CompressOptionsType = {
+export type CompressOptionsType = {
 	//压缩图片的宽，单位px，如果不设置默认为原图宽
 	width?: number
 	//压缩图片质量，默认为原图的0.8
@@ -14,7 +14,7 @@ type CompressOptionsType = {
 	minSize?: number
 }
 
-type CompressResultType = {
+export type CompressResultType = {
 	file?: File
 	url?: string
 	quality?: number

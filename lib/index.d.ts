@@ -8,6 +8,9 @@ import file from './file';
 import string from './string';
 import platform from './platform';
 import speech from './speech';
+export type * from './element';
+export type * from './file';
+export type * from './speech';
 declare const obj: {
     number: {
         formatNumber(num: number): string | number;
@@ -25,12 +28,7 @@ declare const obj: {
     };
     element: {
         isWindow(data: any): any;
-        getElementPoint(el: HTMLElement, root?: HTMLElement | undefined): {
-            left: number;
-            top: number;
-            right: number;
-            bottom: number;
-        };
+        getElementPoint(el: HTMLElement, root?: HTMLElement | undefined): import("./element").PlacementType;
         isContains(parentNode: HTMLElement, childNode: HTMLElement): boolean;
         isParentNode(parentNode: HTMLElement, childNode: HTMLElement): boolean;
         children(el: HTMLElement, selector?: string | undefined): Element[];
@@ -45,31 +43,18 @@ declare const obj: {
         scrollTopBottomTrigger(el?: string | HTMLElement | Window | undefined, callback?: ((options: any) => void) | undefined): void;
         getScrollWidth(el?: string | HTMLElement | undefined): number;
         getScrollHeight(el?: string | HTMLElement | undefined): number;
-        setScrollTop(options: {
-            el?: string | HTMLElement | Window | undefined;
-            time?: number | undefined;
-            number?: number | undefined;
-        }): Promise<void>;
+        setScrollTop(options: import("./element").ScrollOptionsType): Promise<void>;
         getScrollTop(el?: string | HTMLElement | Window | undefined): number;
         getScrollLeft(el?: string | HTMLElement | Window | undefined): number;
-        setScrollLeft(options: {
-            el?: string | HTMLElement | Window | undefined;
-            time?: number | undefined;
-            number?: number | undefined;
-        }): Promise<void>;
+        setScrollLeft(options: import("./element").ScrollOptionsType): Promise<void>;
         getCssStyle(el: HTMLElement, cssName: string): string;
         getCssSelector(selector: string): {
             type: string;
             value: any;
         };
-        getElementBounding(el?: string | HTMLElement | undefined): {
-            left: number;
-            top: number;
-            right: number;
-            bottom: number;
-        };
+        getElementBounding(el?: string | HTMLElement | undefined): import("./element").PlacementType;
         isElement(el: any): any;
-        string2dom(str: string, parentTag?: string | undefined): Element | Element[];
+        string2dom(html: string): Element | Element[];
     };
     event: {
         on(el: HTMLElement | Window | Document, eventName: string, fn: (e: Event) => void, options?: AddEventListenerOptions | undefined): void;
@@ -95,19 +80,7 @@ declare const obj: {
         getImageUrl(file: File): string;
         dataFileToBase64(file: File): Promise<string>;
         dataBase64toFile(base64String: string, fileName: string): File;
-        compressImage(file: File, opts: {
-            width?: number | undefined;
-            quality?: number | undefined;
-            mimeType?: string | undefined;
-            maxSize?: number | undefined;
-            minSize?: number | undefined;
-        }): Promise<{
-            file?: File | undefined;
-            url?: string | undefined;
-            quality?: number | undefined;
-            width?: number | undefined;
-            height?: number | undefined;
-        }>;
+        compressImage(file: File, opts: import("./file").CompressOptionsType): Promise<import("./file").CompressResultType>;
     };
     string: {
         insert(original: string, str: string, index: number): string;
@@ -154,41 +127,7 @@ declare const obj: {
         };
     };
     speech: {
-        start(text: string, params?: {
-            pitch?: number | undefined;
-            rate?: number | undefined;
-            volume?: number | undefined;
-            start?: ((e: Event, options: {
-                text: string;
-                pitch: number;
-                rate: number;
-                volume: number;
-            }) => void) | undefined;
-            end?: ((e: Event, options: {
-                text: string;
-                pitch: number;
-                rate: number;
-                volume: number;
-            }) => void) | undefined;
-            pause?: ((e: Event, options: {
-                text: string;
-                pitch: number;
-                rate: number;
-                volume: number;
-            }) => void) | undefined;
-            resume?: ((e: Event, options: {
-                text: string;
-                pitch: number;
-                rate: number;
-                volume: number;
-            }) => void) | undefined;
-            error?: ((e: Event, options: {
-                text: string;
-                pitch: number;
-                rate: number;
-                volume: number;
-            }) => void) | undefined;
-        } | undefined): void;
+        start(text: string, params?: import("./speech").SpeechParamsType | undefined): void;
         stop(): void;
         pause(): void;
         resume(): void;

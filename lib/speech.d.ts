@@ -1,10 +1,10 @@
-type EventParamsType = {
+export type EventParamsType = {
     text: string;
     pitch: number;
     rate: number;
     volume: number;
 };
-type SpeechParamsType = {
+export type SpeechParamsType = {
     pitch?: number;
     rate?: number;
     volume?: number;

@@ -1,13 +1,13 @@
 import stringUtil from './string'
 import numberUtil from './number'
 
-type ScrollOptionsType = {
+export type ScrollOptionsType = {
 	el?: HTMLElement | string | Window
 	time?: number
 	number?: number
 }
 
-type PlacementType = {
+export type PlacementType = {
 	left: number
 	top: number
 	right: number
@@ -615,18 +615,18 @@ export default {
 
 	/**
 	 * 字符串转dom
-	 * @param {Object} str
+	 * @param {Object} html
 	 */
-	string2dom(str: string, parentTag?: string) {
-		if (!str || typeof str != 'string') {
+	string2dom(html: string) {
+		if (!html || typeof html != 'string') {
 			throw new TypeError('The argument must be an HTML string')
 		}
-		let parentEle = document.createElement(parentTag || 'div')
-		parentEle.innerHTML = str
-		if (parentEle.children.length == 1) {
-			return parentEle.children[0]
+		const template = document.createElement('template')
+		template.innerHTML = html
+		if (template.content.children.length == 1) {
+			return template.content.children[0]
 		} else {
-			return Array.from(parentEle.children)
+			return Array.from(template.content.children)
 		}
 	}
 }
