@@ -12,7 +12,7 @@ export type PlacementType = {
 /**
  * element相关工具方法
  */
-declare const _default: {
+export declare const element: {
     /**
      * 判断是否是Window对象
      * @param {Object} data 入参
@@ -152,4 +152,3 @@ declare const _default: {
      */
     string2dom(html: string): Element | Element[];
 };
-export default _default;

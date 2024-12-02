@@ -1,19 +1,16 @@
-import { default as number } from './number';
-import { default as data } from './data';
-import { default as element } from './element';
-import { default as event } from './event';
-import { default as common } from './common';
-import { default as color } from './color';
-import { default as file } from './file';
-import { default as string } from './string';
-import { default as platform } from './platform';
-import { default as speech } from './speech';
-export type * from './element';
-export type * from './file';
-export type * from './speech';
-declare const obj: {
+export * from './color';
+export * from './common';
+export * from './data';
+export * from './element';
+export * from './event';
+export * from './file';
+export * from './number';
+export * from './platform';
+export * from './speech';
+export * from './string';
+declare const _default: {
     number: {
-        formatNumber(num: number): string | number;
+        formatNumber(num: number): string;
         isNumber(num: any): boolean;
         add(...values: number[]): number;
         subtract(...values: number[]): number;
@@ -21,10 +18,10 @@ declare const obj: {
         divide(...values: number[]): number;
     };
     data: {
-        remove(el: HTMLElement | Window | Document, key?: string | null): void;
-        has(el: HTMLElement | Window | Document, key: string): any;
-        get(el: HTMLElement | Window | Document, key?: string | null): any;
-        set(el: HTMLElement | Window | Document, key: string, value?: any): void;
+        remove(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key?: string): void;
+        has(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key: string): any;
+        get(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key?: string): any;
+        set(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key: string, value?: any): void;
     };
     element: {
         isWindow(data: any): any;
@@ -59,11 +56,11 @@ declare const obj: {
     event: {
         on(el: HTMLElement | Window | Document, eventName: string, fn: (e: Event) => void, options?: AddEventListenerOptions): void;
         off(el: HTMLElement | Window | Document, eventName?: string): void;
-        get(el: HTMLElement | Window | Document): any;
+        get(el: HTMLElement | Window | Document): import('./event').EventObjType | undefined;
     };
     common: {
-        matchingText(text: string, param: string): boolean;
-        getUrlParams(name: string): string | null;
+        matchingText(text: string, param: import('./common').matchingParamType): boolean;
+        getUrlParams(name: string): string | undefined;
         isEmptyObject(obj: any): boolean;
         equal(a: any, b: any): boolean;
         isObject(val: any): boolean;
@@ -80,7 +77,7 @@ declare const obj: {
         getImageUrl(file: File): string;
         dataFileToBase64(file: File): Promise<string>;
         dataBase64toFile(base64String: string, fileName: string): File;
-        compressImage(file: File, opts: import('./file').CompressOptionsType): Promise<import('./file').CompressResultType>;
+        compressImage(file: File, options: import('./file').CompressOptionsType): Promise<import('./file').CompressResultType>;
     };
     string: {
         insert(original: string, str: string, index: number): string;
@@ -89,7 +86,7 @@ declare const obj: {
         trim(str: string, global?: boolean): string;
     };
     platform: {
-        language(): any;
+        language(): string;
         device(): {
             PC: boolean;
             Mobile: boolean;
@@ -127,10 +124,10 @@ declare const obj: {
         };
     };
     speech: {
-        start(text: string, params?: import('./speech').SpeechParamsType): void;
+        start(text: string, options?: import('./speech').SpeechParamsType): void;
         stop(): void;
         pause(): void;
         resume(): void;
     };
 };
-export { obj as default, number, data, element, event, common, color, file, string, platform, speech };
+export default _default;

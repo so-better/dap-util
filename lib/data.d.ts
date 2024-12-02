@@ -1,31 +1,39 @@
+export type DataHTMLElement = HTMLElement & {
+    [key: string]: any;
+};
+export type DataWindow = Window & {
+    [key: string]: any;
+};
+export type DataDocument = Document & {
+    [key: string]: any;
+};
 /**
  * 元素数据挂载方法
  */
-declare const _default: {
+export declare const data: {
     /**
      * 移除指定数据
      * @param {Object} el
      * @param {Object} key
      */
-    remove(el: HTMLElement | Window | Document, key?: string | null): void;
+    remove(el: DataHTMLElement | DataWindow | DataDocument, key?: string): void;
     /**
      * 判断是否含有指定数据
      * @param {Object} el
      * @param {Object} key
      */
-    has(el: HTMLElement | Window | Document, key: string): any;
+    has(el: DataHTMLElement | DataWindow | DataDocument, key: string): any;
     /**
      * 获取元素指定数据
      * @param {Object} el
      * @param {Object} key
      */
-    get(el: HTMLElement | Window | Document, key?: string | null): any;
+    get(el: DataHTMLElement | DataWindow | DataDocument, key?: string): any;
     /**
      * 设置元素指定数据
      * @param {Object} el
      * @param {Object} key
      * @param {Object} value
      */
-    set(el: HTMLElement | Window | Document, key: string, value?: any): void;
+    set(el: DataHTMLElement | DataWindow | DataDocument, key: string, value?: any): void;
 };
-export default _default;

@@ -1,14 +1,14 @@
-import commonUtil from './common'
+import { common as commonUtil } from './common'
 /**
  * 颜色相关方法
  */
-export default {
+export const color = {
 	/**
 	 * rgb转hsv值
 	 * @param {Object} rgb rgb值，数组
 	 */
 	rgb2hsv(rgb: number[]) {
-		if (!Array.isArray(rgb) || rgb.length != 3) {
+		if (rgb.length != 3) {
 			throw new TypeError('Invalid argument')
 		}
 		let h = 0
@@ -47,7 +47,7 @@ export default {
 	 * @param {Object} hsv hsv值，数组
 	 */
 	hsv2rgb(hsv: number[]) {
-		if (!Array.isArray(hsv) || hsv.length != 3) {
+		if (hsv.length != 3) {
 			throw new TypeError('Invalid argument')
 		}
 		let h = hsv[0] >= 360 || hsv[0] <= 0 ? 0 : hsv[0]
@@ -110,7 +110,7 @@ export default {
 	 * @param {Array} rgb rgb值，数组
 	 */
 	rgb2hex(rgb: number[]) {
-		if (!Array.isArray(rgb) || rgb.length != 3) {
+		if (rgb.length != 3) {
 			throw new TypeError('Invalid argument')
 		}
 		let r = rgb[0]
@@ -125,9 +125,6 @@ export default {
 	 * @param {String} hex 十六进制颜色值
 	 */
 	hex2rgb(hex: string) {
-		if (!hex || typeof hex != 'string') {
-			throw new TypeError('The argument must be a string')
-		}
 		let color = hex.toLowerCase()
 		if (!commonUtil.matchingText(color, 'hex')) {
 			throw new TypeError('The argument must be a hexadecimal color value')

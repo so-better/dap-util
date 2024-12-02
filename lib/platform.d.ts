@@ -1,5 +1,5 @@
-declare const _default: {
-    language(): any;
+export declare const platform: {
+    language(): string;
     /**
      * 获取设备类型
      */
@@ -48,4 +48,3 @@ declare const _default: {
         Ubuntu: boolean;
     };
 };
-export default _default;

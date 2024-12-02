@@ -1,4 +1,15 @@
-declare const _default: {
+export type EventNameObjType = {
+    eventName?: string;
+    guid?: string | number;
+};
+export type EventObjType = {
+    [key: string]: {
+        type: string;
+        fn: EventListenerOrEventListenerObject;
+        options?: AddEventListenerOptions;
+    } | undefined;
+};
+export declare const event: {
     /**
      * 绑定事件
      * @param {Object} el 元素节点
@@ -17,6 +28,5 @@ declare const _default: {
      * 获取绑定的所有事件
      * @param {*} el
      */
-    get(el: HTMLElement | Window | Document): any;
+    get(el: HTMLElement | Window | Document): EventObjType | undefined;
 };
-export default _default;

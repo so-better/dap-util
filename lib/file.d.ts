@@ -12,7 +12,7 @@ export type CompressResultType = {
     width?: number;
     height?: number;
 };
-declare const _default: {
+export declare const file: {
     /**
      * 根据文件获取可预览的图片路径
      * @param {Object} file
@@ -32,8 +32,7 @@ declare const _default: {
     /**
      * 图片压缩方法
      * @param {*} file 需要压缩的图片File文件
-     * @param {*} opts 压缩参数
+     * @param {*} options 压缩参数
      */
-    compressImage(file: File, opts: CompressOptionsType): Promise<CompressResultType>;
+    compressImage(file: File, options: CompressOptionsType): Promise<CompressResultType>;
 };
-export default _default;

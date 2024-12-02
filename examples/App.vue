@@ -1,13 +1,14 @@
 <template>
-	<div style="padding: 20px"></div>
+  <div style="padding: 20px"></div>
 </template>
 <script lang="ts">
-import { number, element } from '../src'
+import { number, element, common, data } from '../src'
 
 export default {
-	mounted() {
-		console.log(element.string2dom('<td>333</td>'))
-	}
+  mounted() {
+    data.set(window, 'a', 'hello')
+    console.log(data.has(window, 'a'))
+  }
 }
 </script>
 <style lang="less"></style>

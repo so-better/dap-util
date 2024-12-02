@@ -1,7 +1,7 @@
 /**
  * 数字相关方法
  */
-export default {
+export const number = {
 	/**
 	 * 数字格式化
 	 * @param {Number} num
@@ -9,9 +9,8 @@ export default {
 	formatNumber(num: number) {
 		if (this.isNumber(num)) {
 			return num.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
-		} else {
-			return num
 		}
+		return num.toString()
 	},
 
 	/**

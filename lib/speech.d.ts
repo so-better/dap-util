@@ -17,12 +17,13 @@ export type SpeechParamsType = {
 /**
  * 语音合成方法
  */
-declare const _default: {
+export declare const speech: {
     /**
      * 将文字加入语音播报队列
      * @param {Object} text
+     * @param {Object} options
      */
-    start(text: string, params?: SpeechParamsType): void;
+    start(text: string, options?: SpeechParamsType): void;
     /**
      * 停止播报，停止所有播报队列里面的语音
      */
@@ -36,4 +37,3 @@ declare const _default: {
      */
     resume(): void;
 };
-export default _default;

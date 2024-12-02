@@ -1,12 +1,12 @@
 /**
  * 数字相关方法
  */
-declare const _default: {
+export declare const number: {
     /**
      * 数字格式化
      * @param {Number} num
      */
-    formatNumber(num: number): string | number;
+    formatNumber(num: number): string;
     /**
      * 判断是否数字
      * @param {Object} num
@@ -29,4 +29,3 @@ declare const _default: {
      */
     divide(...values: number[]): number;
 };
-export default _default;

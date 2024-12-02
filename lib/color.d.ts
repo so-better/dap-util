@@ -1,7 +1,7 @@
 /**
  * 颜色相关方法
  */
-declare const _default: {
+export declare const color: {
     /**
      * rgb转hsv值
      * @param {Object} rgb rgb值，数组
@@ -23,4 +23,3 @@ declare const _default: {
      */
     hex2rgb(hex: string): number[];
 };
-export default _default;

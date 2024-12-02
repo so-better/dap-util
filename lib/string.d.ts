@@ -1,7 +1,7 @@
 /**
  * 字符串操作
  */
-declare const _default: {
+export declare const string: {
     /**
      * 向指定位置插入字符串
      * @param {Object} original 原始字符串
@@ -31,4 +31,3 @@ declare const _default: {
      */
     trim(str: string, global?: boolean): string;
 };
-export default _default;

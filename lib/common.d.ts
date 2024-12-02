@@ -1,18 +1,19 @@
+export type matchingParamType = 'Chinese' | 'chinese' | 'email' | 'username' | 'int+' | 'int-' | 'int' | 'pos' | 'neg' | 'number' | 'phone' | 'idCard' | 'url' | 'IPv4' | 'hex' | 'rgb' | 'rgba' | 'QQ' | 'weixin' | 'plate';
 /**
  * 常用方法
  */
-declare const _default: {
+export declare const common: {
     /**
      * 常用判断
      * @param {Object} text 要判断的字符串
      * @param {Object} param 判断的类型字符串
      */
-    matchingText(text: string, param: string): boolean;
+    matchingText(text: string, param: matchingParamType): boolean;
     /**
      * 根据参数名获取地址栏参数值
      * @param {Object} name
      */
-    getUrlParams(name: string): string | null;
+    getUrlParams(name: string): string | undefined;
     /**
      * 判断是否空对象
      * @param {Object} obj
@@ -36,8 +37,7 @@ declare const _default: {
     copyText(text: string): Promise<void>;
     /**
      * 深度克隆
-     * @param {T} data
+     * @param {Object} data
      */
     clone<T>(data: T): T;
 };
-export default _default;
