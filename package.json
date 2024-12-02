@@ -1,6 +1,6 @@
 {
 	"name": "dap-util",
-	"version": "1.5.8",
+	"version": "1.5.9",
 	"private": false,
 	"type": "module",
 	"author": "so-better",
@@ -11,7 +11,7 @@
 	"description": "一个轻量的前端JavaScript工具库，专注于JavaScript，不关心UI",
 	"scripts": {
 		"dev": "vite --host",
-		"lib": "vue-tsc && vite build"
+		"lib": "tsc && vite build"
 	},
 	"dependencies": {
 		"vue": "^3.2.47"
@@ -19,13 +19,12 @@
 	"devDependencies": {
 		"@types/node": "^20.11.24",
 		"terser": "^5.16.9",
-		"vite": "^5.1.4",
+		"vite": "^5.4.10",
 		"less": "^3.0.4",
 		"less-loader": "^5.0.0",
 		"@vitejs/plugin-vue": "^5.0.4",
-		"typescript": "^5.2.2",
-		"vite-plugin-dts": "^3.7.3",
-		"vue-tsc": "^1.8.27"
+		"typescript": "^5.6.3",
+		"vite-plugin-dts": "^4.3.0"
 	},
 	"browserslist": [
 		"> 1%",

@@ -36,8 +36,8 @@ declare const _default: {
     copyText(text: string): Promise<void>;
     /**
      * 深度克隆
-     * @param {Object} data
+     * @param {T} data
      */
-    clone(data: any): any;
+    clone<T>(data: T): T;
 };
 export default _default;

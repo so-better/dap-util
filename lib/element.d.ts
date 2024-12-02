@@ -91,7 +91,7 @@ declare const _default: {
      * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
      * @param {Object} callback 回调函数
      */
-    scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: ((options: any) => void) | undefined): void;
+    scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: (options: any) => void): void;
     /**
      * 获取文档或元素的总宽度
      * @param {Object} el 支持css选择器字符串 未指定则表示整个页面文档
