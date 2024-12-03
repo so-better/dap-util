@@ -2,12 +2,14 @@
   <div style="padding: 20px"></div>
 </template>
 <script lang="ts">
-import { number, element, common, data } from '../src'
+import { number, element, common, data, color } from '../src'
 
 export default {
   mounted() {
-    data.set(window, 'a', 'hello')
-    console.log(data.has(window, 'a'))
+    data.set(document.body, 'name', 'kailing')
+    const name = data.has(document.body, 'name')
+    console.log(name);
+
   }
 }
 </script>

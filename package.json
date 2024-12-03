@@ -11,10 +11,12 @@
 	"description": "一个轻量的前端JavaScript工具库，专注于JavaScript，不关心UI",
 	"scripts": {
 		"dev": "vite --host",
-		"lib": "tsc && vite build"
+		"lib": "tsc && vite build",
+		"docs:dev": "vitepress dev docs",
+		"docs:build": "vitepress build docs"
 	},
 	"dependencies": {
-		"vue": "^3.2.47"
+		"vue": "^3.3.13"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.24",
@@ -24,7 +26,8 @@
 		"less-loader": "^5.0.0",
 		"@vitejs/plugin-vue": "^5.0.4",
 		"typescript": "^5.6.3",
-		"vite-plugin-dts": "^4.3.0"
+		"vite-plugin-dts": "^4.3.0",
+		"vitepress": "^1.5.0"
 	},
 	"browserslist": [
 		"> 1%",
