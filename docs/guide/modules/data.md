@@ -6,7 +6,7 @@ title: data
 
 数据模块
 
-## set
+## set()
 
 在 `dom` 元素或者 `window` 或者 `Document` 上绑定指定数据
 
@@ -29,7 +29,7 @@ title: data
   data.set(document.body, 'name', 'jack')
   ```
 
-## get
+## get()
 
 从 `dom` 元素或者 `window` 或者 `Document` 上获取绑定的指定数据
 
@@ -50,7 +50,7 @@ title: data
   const name = data.get<string>(document.body, 'name') //jack
   ```
 
-## has
+## has()
 
 判断 `dom` 元素或者 `window` 或者 `Document` 上是否存在绑定的数据
 
@@ -73,7 +73,7 @@ title: data
   data.has(document.body, 'name') //true
   ```
 
-## remove
+## remove()
 
 在 `dom` 元素或者 `window` 或者 `Document` 上移除指定数据
 

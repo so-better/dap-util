@@ -6,7 +6,7 @@ title: common
 
 通用模块
 
-## matchingText
+## matchingText()
 
 常用正则匹配判断
 
@@ -69,7 +69,7 @@ title: common
   common.matchingText('rgb(255, 0, 0)', 'rgb') //true
   ```
 
-## getUrlParams
+## getUrlParams()
 
 根据参数名获取地址栏参数值
 
@@ -92,7 +92,7 @@ title: common
   const name = common.getUrlParams('name')
   ```
 
-## isEmptyObject
+## isEmptyObject()
 
 判断是否空对象
 
@@ -117,7 +117,7 @@ title: common
   common.isEmptyObject('name') //false
   ```
 
-## equal
+## equal()
 
 判断两个参数是否相等
 
@@ -141,7 +141,7 @@ title: common
   common.equal({ name: 'a' }, { name: 'a' }) //true
   ```
 
-## isObject
+## isObject()
 
 判断是否对象
 
@@ -164,7 +164,7 @@ title: common
   common.isObject({ name: 'a' }) //true
   ```
 
-## copyText
+## copyText()
 
 复制指定文本到剪切板
 
@@ -187,7 +187,7 @@ title: common
   common.copyText('hello')
   ```
 
-## clone
+## clone()
 
 深度克隆
 

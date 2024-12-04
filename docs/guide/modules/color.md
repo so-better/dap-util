@@ -6,7 +6,7 @@ title: color
 
 颜色模块
 
-## rgb2hsv
+## rgb2hsv()
 
 RGB 颜色值转 HSV 颜色值
 
@@ -27,7 +27,7 @@ RGB 颜色值转 HSV 颜色值
   const hsv = color.rgb2hsv([255, 0, 0]) //[0, 100, 100]
   ```
 
-## hsv2rgb
+## hsv2rgb()
 
 HSV 颜色值转 RGB 颜色值
 
@@ -48,7 +48,7 @@ HSV 颜色值转 RGB 颜色值
   const rgb = color.hsv2rgb([0, 100, 100]) //[255, 0, 0]
   ```
 
-## rgb2hex
+## rgb2hex()
 
 RGB 颜色值转 HEX 颜色值
 
@@ -69,7 +69,7 @@ RGB 颜色值转 HEX 颜色值
   const hex = color.rgb2hex([255, 0, 0]) //#ff0000
   ```
 
-## hex2rgb
+## hex2rgb()
 
 HEX 颜色值转 RGB 颜色值
 

@@ -95,10 +95,8 @@ export const element = {
    * @param {Object} selector 支持多选择器，等同于querySelectorAll的参数
    */
   children(el: HTMLElement, selector?: string) {
-    const res = el.querySelectorAll(selector ?? '*')
-    return [...res].filter(ele => {
-      return ele.parentNode === el
-    })
+    const elements: HTMLElement[] = Array.from(el.querySelectorAll(selector ?? '*'))
+    return Array.from(elements).filter(elm => this.isParentNode(el, elm))
   },
 
   /**
@@ -108,12 +106,10 @@ export const element = {
    */
   siblings(el: HTMLElement, selector?: string) {
     if (!el.parentNode) {
-      return []
+      return [] as HTMLElement[]
     }
-    const res = el.parentNode.querySelectorAll(selector ?? '*')
-    return [...res].filter(ele => {
-      return ele.parentNode === el.parentNode && ele != el
-    })
+    const elements: HTMLElement[] = Array.from(el.parentNode.querySelectorAll(selector ?? '*'))
+    return elements.filter(elm => elm.parentNode === el.parentNode && elm != el)
   },
 
   /**
