@@ -14,6 +14,11 @@ export type PlacementType = {
   bottom: number
 }
 
+export type scrollTopBottomResultType = {
+  state: 'top' | 'bottom'
+  target: HTMLElement | Window
+}
+
 /**
  * element相关工具方法
  */
@@ -205,7 +210,7 @@ export const element = {
    * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
    * @param {Object} callback 回调函数
    */
-  scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: (options: any) => void) {
+  scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: (options: scrollTopBottomResultType) => void) {
     if (typeof el == 'string' && el) {
       el = document.body.querySelector(el) as HTMLElement
     }
@@ -221,7 +226,7 @@ export const element = {
     scrollEle.addEventListener('scroll', () => {
       if (this.getScrollTop(scrollEle) <= 0) {
         //滑动到顶部
-        const options = {
+        const options: scrollTopBottomResultType = {
           state: 'top',
           target: scrollEle
         }
@@ -234,7 +239,7 @@ export const element = {
         }
       } else {
         //滑动到底部
-        const options = {
+        const options: scrollTopBottomResultType = {
           state: 'bottom',
           target: scrollEle
         }
@@ -460,27 +465,26 @@ export const element = {
    * 判断字符串属于哪种选择器
    * @param {Object} selector
    */
-  getCssSelector(selector: string) {
+  getCssSelector(selector: string): { type: 'id' | 'class' | 'attribute' | 'tag'; value: string | { attributeName: string; attributeValue: string } } {
     //id选择器，以#开头的字符串
     if (/^#{1}/.test(selector)) {
       return {
         type: 'id',
-        value: selector.substr(1)
+        value: selector.substring(1)
       }
     }
     //类名选择器，以.开头的字符串
     if (/^\./.test(selector)) {
       return {
         type: 'class',
-        value: selector.substr(1)
+        value: selector.substring(1)
       }
     }
     //属性选择器，以[]包裹的字符串
     if (/^\[(.+)\]$/.test(selector)) {
-      let type = 'attribute'
-      let value: any = ''
-      let attribute = stringUtil.trim(selector, true).substring(1, stringUtil.trim(selector, true).length - 1)
-      let arry = attribute.split('=')
+      let value: string | { attributeName: string; attributeValue: string } = ''
+      const attribute = stringUtil.trim(selector, true).substring(1, stringUtil.trim(selector, true).length - 1)
+      const arry = attribute.split('=')
       if (arry.length == 1) {
         value = arry[0]
       }
@@ -491,7 +495,7 @@ export const element = {
         }
       }
       return {
-        type,
+        type: 'attribute',
         value
       }
     }
@@ -532,7 +536,7 @@ export const element = {
    * @param {Object} el
    */
   isElement(el: any) {
-    return el && el instanceof Node && el.nodeType === 1
+    return !!el && el instanceof Node && el.nodeType === 1
   },
 
   /**
@@ -543,8 +547,8 @@ export const element = {
     const template = document.createElement('template')
     template.innerHTML = html
     if (template.content.children.length == 1) {
-      return template.content.children[0]
+      return template.content.children[0] as HTMLElement
     }
-    return Array.from(template.content.children)
+    return Array.from(template.content.children) as HTMLElement[]
   }
 }

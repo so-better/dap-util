@@ -2,12 +2,14 @@
   <div style="padding: 20px"></div>
 </template>
 <script lang="ts">
-import { number, element, common, data, color } from '../src'
+import { event } from '../src'
 
 export default {
   mounted() {
-    data.set(document.body, 'name', 'kailing')
-    const name = data.has(document.body, 'name')
+    event.on(document.body, 'click', e => {
+      console.log(111);
+    })
+    const name = event.get(document.body)
     console.log(name);
 
   }
