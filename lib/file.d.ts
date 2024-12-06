@@ -1,7 +1,7 @@
 export type CompressOptionsType = {
     width?: number;
     quality?: number;
-    mimeType?: string;
+    mimeType?: 'jpeg' | 'webp';
     maxSize?: number;
     minSize?: number;
 };
@@ -14,7 +14,7 @@ export type CompressResultType = {
 };
 export declare const file: {
     /**
-     * 根据文件获取可预览的图片路径
+     * 根据文件获取本地可预览的图片路径
      * @param {Object} file
      */
     getImageUrl(file: File): string;

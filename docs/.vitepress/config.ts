@@ -1,16 +1,19 @@
 import { defineConfig } from 'vitepress'
-import path from 'path'
-import fs from 'fs'
 
 export default defineConfig({
-  base: '/dap-util/',
+  base: '/docs/dap-util/',
   title: 'dap-util',
   description: '一个轻量的前端JavaScript工具库，专注于JavaScript，不关心UI',
   lastUpdated: true,
-  head: [['link', { rel: 'icon', type: 'image/png', href: './logo.png' }]],
+  head: [
+    ['link', { rel: 'icon', type: 'image/png', href: 'https://www.so-better.cn/ico.png' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no' }]
+  ],
+  outDir: 'dap-util',
+  cleanUrls: true,
   themeConfig: {
     logo: {
-      src: '/logo.png'
+      src: 'https://www.so-better.cn/logo.png'
     },
     outline: {
       label: '本页目录',

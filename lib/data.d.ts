@@ -22,18 +22,18 @@ export declare const data: {
      * @param {Object} el
      * @param {Object} key
      */
-    has(el: DataHTMLElement | DataWindow | DataDocument, key: string): any;
+    has(el: DataHTMLElement | DataWindow | DataDocument, key: string): boolean;
     /**
      * 获取元素指定数据
      * @param {Object} el
      * @param {Object} key
      */
-    get(el: DataHTMLElement | DataWindow | DataDocument, key?: string): any;
+    get<T>(el: DataHTMLElement | DataWindow | DataDocument, key?: string): T;
     /**
      * 设置元素指定数据
      * @param {Object} el
      * @param {Object} key
      * @param {Object} value
      */
-    set(el: DataHTMLElement | DataWindow | DataDocument, key: string, value?: any): void;
+    set(el: DataHTMLElement | DataWindow | DataDocument, key: string, value: any): void;
 };

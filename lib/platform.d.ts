@@ -1,3 +1,17 @@
+export type OSResultType = {
+    Windows: boolean;
+    WindowsCPU?: 'x64' | 'x32';
+    WindowsVersion?: 'win7' | 'win8' | 'win10';
+    Mac: boolean;
+    MacVersion: string;
+    ios: boolean;
+    iosVersion: string;
+    Android: boolean;
+    AndroidVersion: string;
+    Linux: boolean;
+    HarmonyOS: boolean;
+    Ubuntu: boolean;
+};
 export declare const platform: {
     language(): string;
     /**
@@ -17,34 +31,21 @@ export declare const platform: {
      */
     browser(): {
         Edge: boolean;
-        weixin: boolean;
+        Weixin: boolean;
         QQ: boolean;
         QQBrowser: boolean;
         UC: boolean;
         Chrome: boolean;
         Firefox: boolean;
-        sougou: boolean;
+        Sougou: boolean;
         Safari: boolean;
     };
     /**
      * 获取浏览器内核
      */
-    browserKernel(): "" | "opera" | "webkit" | "gecko";
+    browserKernel(): "opera" | "webkit" | "gecko" | undefined;
     /**
      * 获取操作系统数据
      */
-    os(): {
-        Windows: boolean;
-        Windows_CPU: string;
-        Windows_Version: string;
-        Mac: boolean;
-        Mac_Version: string;
-        ios: boolean;
-        ios_Version: string;
-        Android: boolean;
-        Android_Version: string;
-        Linux: boolean;
-        HarmonyOS: boolean;
-        Ubuntu: boolean;
-    };
+    os(): OSResultType;
 };

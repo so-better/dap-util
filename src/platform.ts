@@ -1,3 +1,18 @@
+export type OSResultType = {
+  Windows: boolean
+  WindowsCPU?: 'x64' | 'x32'
+  WindowsVersion?: 'win7' | 'win8' | 'win10'
+  Mac: boolean
+  MacVersion: string
+  ios: boolean
+  iosVersion: string
+  Android: boolean
+  AndroidVersion: string
+  Linux: boolean
+  HarmonyOS: boolean
+  Ubuntu: boolean
+}
+
 //设备信息相关方法
 export const platform = {
   //设备语言类型
@@ -36,7 +51,7 @@ export const platform = {
       //是否edge浏览器
       Edge: !!userAgent.match(/Edg\/([\d.]+)/),
       //是否微信内置浏览器
-      weixin: userAgent.includes('MicroMessenger'),
+      Weixin: userAgent.includes('MicroMessenger'),
       //是否QQ内置浏览器
       QQ: userAgent.includes('QQ'),
       //是否QQ浏览器
@@ -48,7 +63,7 @@ export const platform = {
       //是否火狐浏览器
       Firefox: userAgent.includes('Firefox'),
       //是否搜狗浏览器
-      sougou: userAgent.toLocaleLowerCase().includes('se 2.x') || userAgent.toLocaleLowerCase().includes('metasr') || userAgent.toLocaleLowerCase().includes('sogou'),
+      Sougou: userAgent.toLocaleLowerCase().includes('se 2.x') || userAgent.toLocaleLowerCase().includes('metasr') || userAgent.toLocaleLowerCase().includes('sogou'),
       //是否safari浏览器
       Safari: userAgent.includes('Safari') && !userAgent.includes('Chrome')
     }
@@ -68,43 +83,40 @@ export const platform = {
     if (userAgent.includes('Gecko') && !userAgent.includes('KHTML')) {
       return 'gecko'
     }
-    return ''
   },
 
   /**
    * 获取操作系统数据
    */
-  os() {
+  os(): OSResultType {
     const userAgent = window.navigator.userAgent
     return {
       //是否Windows系统
       Windows: userAgent.includes('Windows'),
       //x64/x32
-      Windows_CPU: (function () {
+      WindowsCPU: (function () {
         if (userAgent.toLocaleLowerCase().includes('win64') || userAgent.toLocaleLowerCase().includes('wow64')) {
           return 'x64'
         } else if (userAgent.toLocaleLowerCase().includes('win32') || userAgent.toLocaleLowerCase().includes('wow32')) {
           return 'x32'
         }
-        return ''
       })(),
       //Windows版本
-      Windows_Version: (function () {
+      WindowsVersion: (function () {
         if (userAgent.includes('Windows NT 6.1') || userAgent.includes('Windows 7')) {
-          return 'Win7'
+          return 'win7'
         }
         if (userAgent.includes('Windows NT 6.3') || userAgent.includes('Windows NT 6.2') || userAgent.includes('Windows NT 8')) {
-          return 'Win8'
+          return 'win8'
         }
         if (userAgent.includes('Windows NT 10') || userAgent.includes('Windows NT 6.4')) {
-          return 'Win10'
+          return 'win10'
         }
-        return ''
       })(),
       //是否Mac
       Mac: userAgent.includes('Macintosh'),
       //Mac版本
-      Mac_Version: (function () {
+      MacVersion: (function () {
         if (userAgent.includes('Macintosh')) {
           const matches = userAgent.match(/Mac OS X ([^\s]+)\)/)
           if (matches && matches[1]) {
@@ -116,7 +128,7 @@ export const platform = {
       //是否ios系统
       ios: !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
       //ios系统版本
-      ios_Version: (function () {
+      iosVersion: (function () {
         if (!!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
           const matches = userAgent.match(/CPU.+OS ([^\s]+) like Mac OS X/)
           if (matches && matches[1]) {
@@ -128,7 +140,7 @@ export const platform = {
       //是否Android系统
       Android: userAgent.includes('Android'),
       //Android系统版本
-      Android_Version: (function () {
+      AndroidVersion: (function () {
         const matches = userAgent.match(/Android ([^\s]+);/)
         if (matches && matches[1]) {
           return matches[1].split(/_|\./).join('.')

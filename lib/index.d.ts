@@ -19,17 +19,17 @@ declare const _default: {
     };
     data: {
         remove(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key?: string): void;
-        has(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key: string): any;
-        get(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key?: string): any;
-        set(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key: string, value?: any): void;
+        has(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key: string): boolean;
+        get<T>(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key?: string): T;
+        set(el: import('./data').DataHTMLElement | import('./data').DataWindow | import('./data').DataDocument, key: string, value: any): void;
     };
     element: {
-        isWindow(data: any): any;
+        isWindow(data: any): boolean;
         getElementPoint(el: HTMLElement, root?: HTMLElement): import('./element').PlacementType;
         isContains(parentNode: HTMLElement, childNode: HTMLElement): boolean;
         isParentNode(parentNode: HTMLElement, childNode: HTMLElement): boolean;
-        children(el: HTMLElement, selector?: string): Element[];
-        siblings(el: HTMLElement, selector?: string): Element[];
+        children(el: HTMLElement, selector?: string): HTMLElement[];
+        siblings(el: HTMLElement, selector?: string): HTMLElement[];
         rem2px(num: number): number;
         px2rem(num: number): number;
         width(el?: HTMLElement | string): number;
@@ -37,7 +37,7 @@ declare const _default: {
         removeClass(el: HTMLElement, className: string): void;
         addClass(el: HTMLElement, className: string): void;
         hasClass(el: HTMLElement, className: string): boolean;
-        scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: (options: any) => void): void;
+        scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: (options: import('./element').scrollTopBottomResultType) => void): void;
         getScrollWidth(el?: HTMLElement | string): number;
         getScrollHeight(el?: HTMLElement | string): number;
         setScrollTop(options: import('./element').ScrollOptionsType): Promise<void>;
@@ -46,12 +46,15 @@ declare const _default: {
         setScrollLeft(options: import('./element').ScrollOptionsType): Promise<void>;
         getCssStyle(el: HTMLElement, cssName: string): string;
         getCssSelector(selector: string): {
-            type: string;
-            value: any;
+            type: "id" | "class" | "attribute" | "tag";
+            value: string | {
+                attributeName: string;
+                attributeValue: string;
+            };
         };
         getElementBounding(el?: HTMLElement | string): import('./element').PlacementType;
-        isElement(el: any): any;
-        string2dom(html: string): Element | Element[];
+        isElement(el: any): boolean;
+        string2dom(html: string): HTMLElement | HTMLElement[];
     };
     event: {
         on(el: HTMLElement | Window | Document, eventName: string, fn: (e: Event) => void, options?: AddEventListenerOptions): void;
@@ -98,30 +101,17 @@ declare const _default: {
         };
         browser(): {
             Edge: boolean;
-            weixin: boolean;
+            Weixin: boolean;
             QQ: boolean;
             QQBrowser: boolean;
             UC: boolean;
             Chrome: boolean;
             Firefox: boolean;
-            sougou: boolean;
+            Sougou: boolean;
             Safari: boolean;
         };
-        browserKernel(): "" | "opera" | "webkit" | "gecko";
-        os(): {
-            Windows: boolean;
-            Windows_CPU: string;
-            Windows_Version: string;
-            Mac: boolean;
-            Mac_Version: string;
-            ios: boolean;
-            ios_Version: string;
-            Android: boolean;
-            Android_Version: string;
-            Linux: boolean;
-            HarmonyOS: boolean;
-            Ubuntu: boolean;
-        };
+        browserKernel(): "opera" | "webkit" | "gecko" | undefined;
+        os(): import('./platform').OSResultType;
     };
     speech: {
         start(text: string, options?: import('./speech').SpeechParamsType): void;

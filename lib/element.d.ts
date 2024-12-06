@@ -9,6 +9,10 @@ export type PlacementType = {
     right: number;
     bottom: number;
 };
+export type scrollTopBottomResultType = {
+    state: 'top' | 'bottom';
+    target: HTMLElement | Window;
+};
 /**
  * element相关工具方法
  */
@@ -17,7 +21,7 @@ export declare const element: {
      * 判断是否是Window对象
      * @param {Object} data 入参
      */
-    isWindow(data: any): any;
+    isWindow(data: any): boolean;
     /**
      * 获取元素距离某个定位祖先元素左侧/顶部/底部/右侧的距离
      * @param {Object} el 元素
@@ -41,13 +45,13 @@ export declare const element: {
      * @param {Object} el 元素
      * @param {Object} selector 支持多选择器，等同于querySelectorAll的参数
      */
-    children(el: HTMLElement, selector?: string): Element[];
+    children(el: HTMLElement, selector?: string): HTMLElement[];
     /**
      * 查找某个元素下指定选择器的兄弟元素
      * @param {Object} el 元素
      * @param {Object} selector 取值等同于queryselectorAll的参数，支持多选择器
      */
-    siblings(el: HTMLElement, selector?: string): Element[];
+    siblings(el: HTMLElement, selector?: string): HTMLElement[];
     /**
      * rem与px单位转换
      * @param {Object} num rem数值
@@ -91,7 +95,7 @@ export declare const element: {
      * @param {Object} el 支持css选择器字符串 未指定则为窗口滚动
      * @param {Object} callback 回调函数
      */
-    scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: (options: any) => void): void;
+    scrollTopBottomTrigger(el?: HTMLElement | string | Window, callback?: (options: scrollTopBottomResultType) => void): void;
     /**
      * 获取文档或元素的总宽度
      * @param {Object} el 支持css选择器字符串 未指定则表示整个页面文档
@@ -133,8 +137,11 @@ export declare const element: {
      * @param {Object} selector
      */
     getCssSelector(selector: string): {
-        type: string;
-        value: any;
+        type: "id" | "class" | "attribute" | "tag";
+        value: string | {
+            attributeName: string;
+            attributeValue: string;
+        };
     };
     /**
      * 获取元素距离可视窗口的位置
@@ -145,10 +152,10 @@ export declare const element: {
      * 判断是否是元素
      * @param {Object} el
      */
-    isElement(el: any): any;
+    isElement(el: any): boolean;
     /**
      * 字符串转dom
      * @param {Object} html
      */
-    string2dom(html: string): Element | Element[];
+    string2dom(html: string): HTMLElement | HTMLElement[];
 };
