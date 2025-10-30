@@ -26,6 +26,9 @@ features:
   - title: '@kaitify/vue'
     details: 基于kaitify开发的vue富文本编辑器核心库
     link: https://www.so-better.cn/docs/kaitify-vue/
+  - title: '@kaitify/react'
+    details: 基于kaitify开发的react富文本编辑器核心库
+    link: https://www.so-better.cn/docs/kaitify-react/
   - title: animator-clip
     details: 一个基于 JavaScript 的 requestAnimationFrame API 封装的轻量级 JS 动画插件
     link: https://www.so-better.cn/docs/animator-clip/
