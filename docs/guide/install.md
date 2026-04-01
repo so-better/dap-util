@@ -54,17 +54,17 @@ npm install dap-util@1.6.0
 ```
 
 ```bash [yarn]
-yarn install dap-util
+yarn add dap-util
 
 # 安装指定版本
-yarn install dap-util@1.6.0
+yarn add dap-util@1.6.0
 ```
 
 ```bash [pnpm]
-pnpm install dap-util
+pnpm add dap-util
 
 # 安装指定版本
-pnpm install dap-util@1.6.0
+pnpm add dap-util@1.6.0
 ```
 
 :::
