@@ -26,7 +26,7 @@ title: number
 
   ```ts
   import { number } from 'dap-util'
-  const formatNum = number.formatNumber(100000) //1000,00
+  const formatNum = number.formatNumber(100000) //100,000
   ```
 
 ## isNumber()
@@ -96,14 +96,14 @@ title: number
   number.subtract(1, 10, 21) //-30
   ```
 
-## mutiply()
+## multiply()
 
 多个数的乘法运算
 
 - 类型
 
   ```ts
-  mutiply(...values: number[]): number
+  multiply(...values: number[]): number
   ```
 
 - 详细信息
@@ -114,8 +114,8 @@ title: number
 
   ```ts
   import { number } from 'dap-util'
-  number.mutiply(1, 1, 1) //1
-  number.mutiply(1, 10, 21) //210
+  number.multiply(1, 1, 1) //1
+  number.multiply(1, 10, 21) //210
   ```
 
 ## divide()

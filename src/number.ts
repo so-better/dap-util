@@ -65,7 +65,7 @@ export const number = {
 	/**
 	 * 多个数的乘法运算
 	 */
-	mutiply(...values: number[]) {
+	multiply(...values: number[]) {
 		return values.reduce((num, value) => {
 			let m = 0
 			let s1 = num.toString()
@@ -85,6 +85,9 @@ export const number = {
 	 */
 	divide(...values: number[]) {
 		return values.reduce((num, value) => {
+			if (value === 0) {
+				throw new Error('Division by zero')
+			}
 			let t1 = 0
 			let t2 = 0
 			let s1 = num.toString()

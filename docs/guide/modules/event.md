@@ -18,7 +18,7 @@ title: event
 
 - 详细信息
 
-  第一个入参表示绑定事件的元素，同时支持 `window` 和 `document`；第二个入参表示事件名称，如“click”；第三个参数是可选参数，表示事件修饰参数，等同于 `addEventListener` 函数的第三个参数
+  第一个入参表示绑定事件的元素，同时支持 `window` 和 `document`；第二个入参表示事件名称，如”click”；第三个入参表示事件回调函数；第四个参数是可选参数，表示事件修饰参数，等同于 `addEventListener` 函数的第三个参数
 
   第二个参数在设置事件名称时，支持设置事件修饰名称，如“click.a”，后面的“a”就是修饰名称，同时也支持绑定多个事件，每个事件之间通过空格隔开
 
@@ -36,7 +36,7 @@ title: event
   })
   //绑定多个事件
   event.on(document.body, 'mousedown click.a', e => {
-    console.log('mousedown.a')
+    console.log('mousedown or click.a')
   })
   ```
 

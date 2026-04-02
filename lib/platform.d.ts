@@ -37,7 +37,7 @@ export declare const platform: {
         UC: boolean;
         Chrome: boolean;
         Firefox: boolean;
-        Sougou: boolean;
+        Sogou: boolean;
         Safari: boolean;
     };
     /**

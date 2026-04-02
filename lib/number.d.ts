@@ -23,7 +23,7 @@ export declare const number: {
     /**
      * 多个数的乘法运算
      */
-    mutiply(...values: number[]): number;
+    multiply(...values: number[]): number;
     /**
      * 多个数的除法运算
      */

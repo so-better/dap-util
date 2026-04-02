@@ -123,7 +123,7 @@ export const element = {
    */
   rem2px(num: number) {
     const fs = this.getCssStyle(document.documentElement, 'font-size')
-    return numberUtil.mutiply(num, parseFloat(fs))
+    return numberUtil.multiply(num, parseFloat(fs))
   },
 
   /**
@@ -165,7 +165,7 @@ export const element = {
     }
     const clientHeight = (el as HTMLElement).clientHeight //获取元素包括内边距在内的高度
     const paddingTop_height = parseFloat(this.getCssStyle(el as HTMLElement, 'padding-top')) //上内边距
-    const paddingBottom_height = parseFloat(this.getCssStyle(el as HTMLElement, 'padding-bottom')) //下内边距宽度
+    const paddingBottom_height = parseFloat(this.getCssStyle(el as HTMLElement, 'padding-bottom')) //下内边距高度
     return numberUtil.subtract(clientHeight, paddingTop_height, paddingBottom_height)
   },
 
@@ -218,10 +218,7 @@ export const element = {
     if (this.isElement(el) && el != document.body && el != document.documentElement) {
       scrollEle = el as HTMLElement
     }
-    if (typeof el == 'function') {
-      callback = el
-    }
-    //滑动到底部时是否触发回调函数的标识，解决ios系统下多次触发回调的bug
+    //滑动到顶部或底部时是否触发回调函数的标识，解决ios系统下多次触发回调的bug
     let flag = true
     scrollEle.addEventListener('scroll', () => {
       if (this.getScrollTop(scrollEle) <= 0) {
@@ -250,7 +247,8 @@ export const element = {
           height = (scrollEle as HTMLElement).clientHeight
         }
         //+1是为了防止出现小数点误差
-        if (numberUtil.add(this.getScrollTop(scrollEle), height) + 1 >= this.getScrollHeight(scrollEle as HTMLElement) && height != this.getScrollHeight(scrollEle as HTMLElement)) {
+        const scrollHeight = this.getScrollHeight(scrollEle === window ? undefined : (scrollEle as HTMLElement))
+        if (numberUtil.add(this.getScrollTop(scrollEle), height) + 1 >= scrollHeight && height != scrollHeight) {
           if (!flag) {
             return
           }
@@ -450,11 +448,11 @@ export const element = {
    */
   getCssStyle(el: HTMLElement, cssName: string) {
     let cssText = ''
-    //兼容IE9-IE11、chrome、firefox、safari、opera；不兼容IE7-IE8
+    //兼容IE9+、chrome、firefox、safari、opera
     if (document.defaultView && document.defaultView.getComputedStyle) {
       cssText = (document.defaultView.getComputedStyle(el) as any)[cssName]
     }
-    //兼容IE7-IE11；不兼容chrome、firefox、safari、opera
+    //兼容IE（currentStyle为IE专有属性）
     else {
       cssText = (el as any).currentStyle[cssName]
     }
@@ -484,14 +482,14 @@ export const element = {
     if (/^\[(.+)\]$/.test(selector)) {
       let value: string | { attributeName: string; attributeValue: string } = ''
       const attribute = stringUtil.trim(selector, true).substring(1, stringUtil.trim(selector, true).length - 1)
-      const arry = attribute.split('=')
-      if (arry.length == 1) {
-        value = arry[0]
+      const array = attribute.split('=')
+      if (array.length == 1) {
+        value = array[0]
       }
-      if (arry.length == 2) {
+      if (array.length == 2) {
         value = {
-          attributeName: arry[0],
-          attributeValue: arry[1].replace(/\'/g, '').replace(/\"/g, '') //去除属性值的单引号或者双引号
+          attributeName: array[0],
+          attributeValue: array[1].replace(/\'/g, '').replace(/\"/g, '') //去除属性值的单引号或者双引号
         }
       }
       return {

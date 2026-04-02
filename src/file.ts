@@ -51,7 +51,11 @@ export const file = {
    */
   dataBase64toFile(base64String: string, fileName: string) {
     const arr: string[] = base64String.split(',')
-    const mime = arr[0].match(/:(.*?);/)![1]
+    const mimeMatch = arr[0].match(/:(.*?);/)
+    if (!mimeMatch) {
+      throw new Error('Invalid base64 string format')
+    }
+    const mime = mimeMatch[1]
     const bstr = atob(arr[1])
     let n = bstr.length
     const u8arr = new Uint8Array(n)
@@ -77,7 +81,11 @@ export const file = {
       let file = this.dataBase64toFile(url, fileName)
       //比最大尺寸大，继续压缩，此时会降低质量
       if (options.maxSize && options.maxSize > 0 && file.size > options.maxSize * 1024) {
-        quality = quality <= 0 ? 0 : Number((quality - 0.01).toFixed(2))
+        //quality已降至最低，无法继续压缩，直接返回当前结果
+        if (quality <= 0) {
+          return { file, url, quality: 0 }
+        }
+        quality = Number((quality - 0.01).toFixed(2))
         const res: CompressResultType = createFile(canvas, fileName, quality)
         url = res.url!
         file = res.file!

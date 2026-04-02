@@ -63,7 +63,7 @@ export const platform = {
       //是否火狐浏览器
       Firefox: userAgent.includes('Firefox'),
       //是否搜狗浏览器
-      Sougou: userAgent.toLocaleLowerCase().includes('se 2.x') || userAgent.toLocaleLowerCase().includes('metasr') || userAgent.toLocaleLowerCase().includes('sogou'),
+      Sogou: userAgent.toLocaleLowerCase().includes('se 2.x') || userAgent.toLocaleLowerCase().includes('metasr') || userAgent.toLocaleLowerCase().includes('sogou'),
       //是否safari浏览器
       Safari: userAgent.includes('Safari') && !userAgent.includes('Chrome')
     }

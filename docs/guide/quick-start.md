@@ -28,7 +28,7 @@ const result = Dap.platform.device()
 ```
 
 ```ts
-//调用common模块的isObeject方法判断是否对象
+//调用common模块的isObject方法判断是否对象
 const isObj = Dap.common.isObject(val)
 ```
 

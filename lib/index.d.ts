@@ -14,7 +14,7 @@ declare const _default: {
         isNumber(num: any): boolean;
         add(...values: number[]): number;
         subtract(...values: number[]): number;
-        mutiply(...values: number[]): number;
+        multiply(...values: number[]): number;
         divide(...values: number[]): number;
     };
     data: {
@@ -107,7 +107,7 @@ declare const _default: {
             UC: boolean;
             Chrome: boolean;
             Firefox: boolean;
-            Sougou: boolean;
+            Sogou: boolean;
             Safari: boolean;
         };
         browserKernel(): "opera" | "webkit" | "gecko" | undefined;

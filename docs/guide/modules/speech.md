@@ -22,7 +22,7 @@ title: speech
 
   - pitch：话语的音调，类型为 `number`
   - rate：说话的速度，类型为 `number`
-  - volume：说话的音量，，类型为 `number`，取值为 0-1
+  - volume：说话的音量，类型为 `number`，取值为 0-1
   - start：播放开始事件，类型为 `(e: Event, options: EventParamsType) => void`
   - end：播放结束事件，类型为 `(e: Event, options: EventParamsType) => void`
   - pause：播放暂停事件，类型为 `(e: Event, options: EventParamsType) => void`

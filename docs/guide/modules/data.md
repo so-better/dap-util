@@ -62,7 +62,7 @@ title: data
 
 - 详细信息
 
-  第一个入参表示`dom` 元素或者 `window` 或者 `Document`，第二个入参表示需要获取的数据的 `key` 值
+  第一个入参表示`dom` 元素或者 `window` 或者 `Document`，第二个入参表示需要判断是否存在的数据的 `key` 值
 
   该方法会判断指定 `key` 值的数据是否在 `dom` 元素或者 `window` 或者 `Document` 上，返回 `boolean` 值
 

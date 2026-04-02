@@ -55,7 +55,7 @@ title: platform
   - `Phone`：是否手机
   - `iPad`：是否 `iPad`
   - `Tablet`：是否平板电脑
-  - `WindowsPhone`：是否 `s` 系统手机
+  - `WindowsPhone`：是否 `Windows Phone` 手机
 
 - 示例
 
@@ -79,7 +79,7 @@ title: platform
     UC: boolean;
     Chrome: boolean;
     Firefox: boolean;
-    Sougou: boolean;
+    Sogou: boolean;
     Safari: boolean;
   }
   ```
@@ -95,14 +95,14 @@ title: platform
   - `UC`：是否 `UC` 浏览器
   - `Chrome`：是否谷歌浏览器
   - `Firefox`：是否火狐浏览器
-  - `Sougou`：是否搜狗浏览器
+  - `Sogou`：是否搜狗浏览器
   - `Safari`：是否 `safari` 浏览器
 
 - 示例
 
   ```ts
   import { platform } from 'dap-util'
-  platform.browser() //{ Edge: false, Weixin: false, QQ: false, QQBrowser: false, UC: false, Chrome: true, Firefox: false, Sougou: false, Safari: false }
+  platform.browser() //{ Edge: false, Weixin: false, QQ: false, QQBrowser: false, UC: false, Chrome: true, Firefox: false, Sogou: false, Safari: false }
   ```
 
 ## browserKernel()
@@ -151,7 +151,7 @@ title: platform
   - AndroidVersion：安卓系统版本号
   - Linux：是否 `linux` 系统
   - HarmonyOS：是否鸿蒙系统
-  - Ubuntu：是否 `unbuntu` 系统
+  - Ubuntu：是否 `Ubuntu` 系统
 
 - 示例
 

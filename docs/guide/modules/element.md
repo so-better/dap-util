@@ -387,7 +387,7 @@ title: element
   ```ts
   import { element } from 'dap-util'
   //将窗口的垂直滚动条滚动到120px的位置，用时500ms
-  setScrollTop({
+  element.setScrollTop({
     el: window,
     time: 500,
     number: 120
@@ -461,7 +461,7 @@ title: element
   ```ts
   import { element } from 'dap-util'
   //将窗口的横向滚动条滚动到120px的位置，用时500ms
-  setScrollLeft({
+  element.setScrollLeft({
     el: window,
     time: 500,
     number: 120
@@ -518,9 +518,9 @@ title: element
 
   ```ts
   import { element } from 'dap-util'
-  const val = element.getCssSelector('#a') //a
-  const val = element.getCssSelector('.red') //red
-  const val = element.getCssSelector('[data-id="a"') //{ attributeName: "data-id", attributeValue: "a" }
+  const val1 = element.getCssSelector('#a') //{ type: 'id', value: 'a' }
+  const val2 = element.getCssSelector('.red') //{ type: 'class', value: 'red' }
+  const val3 = element.getCssSelector('[data-id="a"]') //{ type: 'attribute', value: { attributeName: 'data-id', attributeValue: 'a' } }
   ```
 
 ## getElementBounding()
@@ -561,7 +561,7 @@ title: element
 
 - 详细信息
 
-  提供一个任意类型的入参，该方法会判断入参是否为元素类型，所谓元素类型指的是类型为 `Node` 且 `nodeType` 为
+  提供一个任意类型的入参，该方法会判断入参是否为元素类型，所谓元素类型指的是类型为 `Node` 且 `nodeType` 为 `1`
 
 - 示例
 
